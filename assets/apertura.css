@@ -23,6 +23,11 @@
   gap: clamp(20px, 4vw, 64px);
   padding-inline: clamp(20px, 5vw, 72px);
   overflow: hidden;
+  /* La barra in alto e' fissa e sta sopra questa scena. Senza questo spazio il
+     contenuto si centra su tutta l'altezza dello schermo e il marchio, che sul
+     telefono e' grande, finisce sotto la barra e si vede tagliato. */
+  padding-top: var(--altezza-barra);
+  box-sizing: border-box;
 }
 
 /* il marchio */
