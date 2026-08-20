@@ -1,0 +1,539 @@
+/* Sentinella per il filetto della barra */
+.sentinella-barra {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Barra in alto */
+.barra {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(20px, 5vw, 48px);
+  background: var(--bianco);
+  border-bottom: 1px solid transparent;
+  z-index: 100;
+  transition: border-color 200ms ease;
+}
+
+.barra--scorsa {
+  border-bottom-color: var(--bordo);
+}
+
+.barra__marchio {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.barra__simbolo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.barra__pezzo--mano { fill: var(--bordeaux); }
+.barra__pezzo--grigio { fill: var(--grigio-logo); }
+.barra__pezzo--arco { fill: #D8D8D8; }
+
+.barra__nome-img {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+
+.barra__menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: var(--grigio-chiaro);
+  color: var(--grafite);
+  cursor: pointer;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+.barra__menu-btn:hover {
+  background: var(--bordeaux);
+  color: var(--bianco);
+}
+
+.barra__menu-btn:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 18px;
+}
+
+.hamburger__riga {
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+/* Velo del menu */
+.menu-velo {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 28, 28, .45);
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.menu-velo--aperto {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Pannello del menu */
+.menu-pannello {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: min(460px, 100vw);
+  background: var(--bianco);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 420ms cubic-bezier(.16, 1, .3, 1);
+  overflow-y: auto;
+}
+
+.menu-pannello--aperto {
+  transform: translateX(0);
+}
+
+@media (max-width: 520px) {
+  .menu-pannello {
+    width: 100vw;
+  }
+}
+
+.menu-pannello__chiudi {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--grafite);
+  cursor: pointer;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+.menu-pannello__chiudi:hover {
+  background: var(--grigio-chiaro);
+  color: var(--bordeaux);
+}
+
+.menu-pannello__chiudi:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+.menu-pannello__logo {
+  align-self: center;
+  margin-top: 28px;
+}
+
+.menu-pannello__logo img {
+  width: 180px;
+  height: auto;
+}
+
+.menu-pannello__voci {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0 clamp(20px, 5vw, 32px);
+  flex: 1;
+}
+
+.menu-voce {
+  border-bottom: 1px solid var(--bordo);
+}
+
+.menu-voce__intestazione {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.menu-voce__link {
+  flex: 1;
+  display: block;
+  padding-block: 18px;
+  color: var(--grafite);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.menu-voce__link:hover {
+  color: var(--bordeaux);
+}
+
+.menu-voce__link:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: -2px;
+}
+
+.menu-voce--corrente > .menu-voce__intestazione .menu-voce__link,
+.menu-voce--corrente > .menu-voce__link {
+  border-left: 3px solid var(--bordeaux);
+  padding-left: 13px;
+}
+
+.menu-voce__apri {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--grafite);
+  cursor: pointer;
+  transition: background-color 220ms ease, transform 220ms ease;
+}
+
+.menu-voce__apri:hover {
+  background: var(--grigio-chiaro);
+}
+
+.menu-voce__apri:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+.menu-voce__apri svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 220ms ease;
+}
+
+.menu-voce__apri[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+
+.menu-voce__sottovoci {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 20px;
+  background: var(--grigio-chiaro);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 300ms ease;
+}
+
+.menu-voce__sottovoci .menu-voce__link {
+  padding-block: 14px;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.menu-voce__sottovoci .menu-voce--corrente .menu-voce__link {
+  border-left: 3px solid var(--bordeaux);
+  padding-left: 13px;
+}
+
+.menu-pannello__fondo {
+  padding: 32px clamp(20px, 5vw, 32px);
+}
+
+.menu-pannello__social {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.menu-pannello__social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--grigio-testo);
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.menu-pannello__social a:hover {
+  color: var(--bordeaux);
+  transform: translateY(-2px);
+}
+
+.menu-pannello__social svg {
+  width: 22px;
+  height: 22px;
+}
+
+.menu-pannello__lingua {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-pannello__lingua button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-pannello__lingua svg {
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px var(--bordo);
+}
+
+/* Fondo pagina */
+.fondo {
+  position: relative;
+  background: var(--bianco-freddo);
+  padding-top: clamp(38px, 5vw, 78px);
+}
+
+.fondo__contenuto {
+  padding-block: clamp(48px, 6vw, 80px);
+}
+
+.fondo__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.fondo__logo img {
+  width: 220px;
+  height: auto;
+}
+
+.fondo__social {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 48px;
+}
+
+.fondo__social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--grigio-testo);
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.fondo__social a:hover {
+  color: var(--bordeaux);
+  transform: translateY(-2px);
+}
+
+.fondo__social svg {
+  width: 22px;
+  height: 22px;
+}
+
+.fondo__colonne {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin-inline: auto;
+  padding-bottom: 48px;
+}
+
+@media (max-width: 720px) {
+  .fondo__colonne {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.fondo__colonna h3 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+
+.fondo__colonna ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fondo__colonna li + li {
+  margin-top: 10px;
+}
+
+.fondo__colonna a {
+  color: var(--grigio-testo);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 220ms ease;
+}
+
+.fondo__colonna a:hover {
+  color: var(--bordeaux);
+}
+
+.fondo__riga-finale {
+  border-top: 1px solid var(--bordo);
+  padding-block: 24px;
+  text-align: center;
+}
+
+.fondo__riga-finale p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--grigio-testo);
+  max-width: none;
+  margin: 0 0 8px;
+}
+
+.fondo__riga-finale a {
+  color: var(--grigio-testo);
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.fondo__riga-finale a:hover {
+  color: var(--bordeaux);
+}
+
+/* Utility per animazioni al caricamento */
+[data-anima] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(.16, 1, .3, 1),
+              transform 700ms cubic-bezier(.16, 1, .3, 1);
+}
+
+[data-anima].visibile {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anima] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   IL MARCHIO NEL FONDO PAGINA
+   Il PNG ha il nome in grigio chiarissimo e sul fondo chiaro sparisce.
+   Si usa il vettoriale con il nome in grafia del cliente.
+   ------------------------------------------------------------ */
+.fondo__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.fondo__simbolo {
+  width: 108px;
+  height: 108px;
+  display: block;
+}
+
+.fondo__pezzo--mano { fill: var(--bordeaux); }
+.fondo__pezzo--grigio { fill: var(--grigio-logo); }
+.fondo__pezzo--arco { fill: #D8D8D8; }
+
+.fondo__nome-img {
+  width: 220px;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   IL METRO
+   Le tacche si colorano di bordeaux in proporzione allo scorrimento
+   di tutta la pagina. Due strati identici sovrapposti: quello grigio
+   sempre intero, quello bordeaux ritagliato in altezza dall'avanzamento.
+   Si muove con clip-path, che non fa ricalcolare l'impaginazione.
+   ------------------------------------------------------------ */
+
+.metro {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  z-index: 90;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
+}
+
+.metro__strato {
+  position: absolute;
+  inset: 0;
+  background:
+    /* tacca lunga ogni cinque */
+    repeating-linear-gradient(to bottom,
+      currentColor 0 1.5px, transparent 1.5px 130px) left / 22px 100% no-repeat,
+    /* tacca corta */
+    repeating-linear-gradient(to bottom,
+      currentColor 0 1px, transparent 1px 26px) left / 11px 100% no-repeat;
+}
+
+.metro__strato--spento  { color: #D6D3D0; }
+.metro__strato--acceso  { color: var(--bordeaux); clip-path: inset(0 0 100% 0); }
+
+@media (max-width: 900px) {
+  .metro { width: 22px; }
+  .metro__strato {
+    background:
+      repeating-linear-gradient(to bottom,
+        currentColor 0 1.5px, transparent 1.5px 110px) left / 15px 100% no-repeat,
+      repeating-linear-gradient(to bottom,
+        currentColor 0 1px, transparent 1px 22px) left / 8px 100% no-repeat;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metro__strato--acceso { clip-path: none; }
+}
