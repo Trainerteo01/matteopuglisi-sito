@@ -26,6 +26,7 @@
 
   function apriMenu() {
     menuAperto = true;
+    document.body.classList.add('menu-aperto');
     const spazio = larghezzaBarraScorrimento();
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = spazio + 'px';
@@ -47,6 +48,7 @@
 
   function chiudiMenu() {
     menuAperto = false;
+    document.body.classList.remove('menu-aperto');
     pannello.classList.remove('menu-pannello--aperto');
     velo.classList.remove('menu-velo--aperto');
     pulsanteMenu.setAttribute('aria-expanded', 'false');

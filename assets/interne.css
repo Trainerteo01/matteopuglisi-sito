@@ -1,0 +1,245 @@
+/* =========================================================
+   Stili condivisi per le pagine interne
+   ========================================================= */
+
+/* ----- Intestazione di pagina (8.x, 10, 12) ----- */
+.pagina-intestazione {
+  position: relative;
+  height: 52vh;
+  min-height: 340px;
+  max-height: 560px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: var(--bianco-freddo);
+}
+
+.pagina-intestazione img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.pagina-intestazione__testo {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 5vw, 48px);
+}
+
+.pagina-intestazione__testo .occhiello {
+  color: var(--bordeaux);
+  margin-bottom: 0.6rem;
+}
+
+.pagina-intestazione__testo .titolo-grande {
+  color: var(--grafite);
+  margin-bottom: 0.6rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, .8);
+}
+
+.pagina-intestazione__sottotitolo {
+  font-size: 1.125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: 62ch;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, .8);
+}
+
+.pagina-intestazione .pennellata--basso {
+  z-index: 1;
+}
+
+/* ----- Sezione descrizione del servizio ----- */
+.pagina-testo-centro {
+  text-align: center;
+}
+
+.pagina-testo-centro p {
+  margin-inline: auto;
+}
+
+/* ----- Sottovoci (militare, calcio) ----- */
+.sottovoci__track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.sottovoci__track .servizio-card__corpo h3 {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+}
+
+@media (max-width: 900px) {
+  .sottovoci__track {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- Protocollo P.A.F.C. (chi sono) ----- */
+.protocollo__griglia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.protocollo__intro {
+  grid-column: 1 / -1;
+  max-width: 72ch;
+}
+
+.protocollo__intro p {
+  max-width: 62ch;
+}
+
+.protocollo__schede {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.5vw, 24px);
+}
+
+.protocollo__card {
+  padding: clamp(20px, 2.5vw, 28px);
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: 16px;
+  box-shadow: var(--ombra);
+}
+
+.protocollo__lettera {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--bordeaux);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.protocollo__nome {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.protocollo__card p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.protocollo__media {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bianco-freddo);
+  min-height: 320px;
+}
+
+.protocollo__media img,
+.protocollo__media video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.protocollo__chiusura {
+  grid-column: 1 / -1;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.protocollo__chiusura p {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--grafite);
+  margin: 0;
+  max-width: none;
+}
+
+@media (max-width: 900px) {
+  .protocollo__griglia {
+    grid-template-columns: 1fr;
+  }
+
+  .protocollo__media {
+    order: -1;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .protocollo__schede {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----- Titoli di studio e dove lavoro (chi sono) ----- */
+.tabella-semplice {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.tabella-semplice th,
+.tabella-semplice td {
+  padding: 16px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--bordo);
+  vertical-align: top;
+}
+
+.tabella-semplice th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--bordeaux);
+  font-weight: 500;
+}
+
+.tabella-semplice td {
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--grigio-testo);
+}
+
+.tabella-semplice td strong {
+  color: var(--grafite);
+  font-weight: 500;
+}
+
+.tabella-semplice .col-anno {
+  width: 110px;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .tabella-semplice .col-anno {
+    width: 80px;
+  }
+}
+
+/* ----- Pagina contatti, a tutta pagina ----- */
+.contatti-pagina {
+  padding-top: 112px;
+  min-height: 100vh;
+}
+
+/* ----- Rispetto delle animazioni ridotte ----- */
+@media (prefers-reduced-motion: reduce) {
+  .pagina-intestazione img {
+    transform: none;
+  }
+}

@@ -30,24 +30,40 @@
 .foto-carousel__velo {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .92) 100%);
+  /* Alleggerito il 2026-08-22, richiesta 6.3: prima arrivava a .92 e le foto sparivano.
+     In fondo resta abbastanza bianco perche' la pennellata attacchi la fascia dopo. */
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, .30) 55%,
+    rgba(255, 255, 255, .70) 100%);
   pointer-events: none;
   z-index: 2;
 }
 
+/* Niente riquadro bianco dietro le parole (richiesta 6.2 del 2026-08-22): resta solo la
+   parola, cosi' le foto si vedono. Il distacco dalla foto lo fanno l'ombra del testo e un
+   velo radiale appena accennato, non un fondo pieno. */
 .foto-carousel__testo {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 92%;
-  max-width: 560px;
-  padding: clamp(28px, 4vw, 44px);
-  background: var(--bianco);
-  border-radius: 16px;
-  box-shadow: var(--ombra);
+  max-width: 720px;
+  padding: clamp(20px, 3vw, 32px);
   text-align: center;
   z-index: 3;
+}
+
+.foto-carousel__testo::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10%;
+  background: radial-gradient(ellipse at center,
+    rgba(0, 0, 0, .28) 0%,
+    rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .foto-carousel__testo h2 {
@@ -57,6 +73,8 @@
 }
 
 .foto-carousel__parola {
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, .55);
   position: absolute;
   left: 0;
   right: 0;
@@ -156,18 +174,54 @@
   overflow: hidden;
 }
 
-.presentazione__piccolo svg {
+.presentazione__piccolo > svg {
+  position: absolute;
   width: 56%;
   height: 56%;
   opacity: .12;
+  pointer-events: none;
 }
 
 .presentazione__piccolo span {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  line-height: 1.35;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grigio-testo);
+}
+
+.presentazione__piccolo span svg {
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+}
+
+/* In attesa del curriculum di Matteo il riquadro resta pieno e si spegne solo la scritta.
+   Con l'opacita' su tutto il riquadro il fondo bianco diventava trasparente sopra la foto
+   e sembrava un difetto di disegno, non un tasto in attesa. */
+.presentazione__piccolo--spento {
+  cursor: default;
+}
+
+.presentazione__piccolo--spento span {
+  opacity: .72;
+}
+
+/* Gia' pronto per quando il curriculum arriva e il riquadro diventa un collegamento. */
+a.presentazione__piccolo {
+  text-decoration: none;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+a.presentazione__piccolo:hover {
+  transform: translateY(-3px);
 }
 
 @media (max-width: 900px) {
@@ -199,6 +253,50 @@
 @media (max-width: 420px) {
   .presentazione__piccolo {
     display: none;
+  }
+}
+
+/* ----- Tendina del percorso (7.2) ----- */
+.percorso {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.percorso.aperta {
+  grid-template-rows: 1fr;
+}
+
+.percorso__dentro {
+  overflow: hidden;
+  max-width: 62ch;
+}
+
+/* Lo stacco dal pulsante sta dentro il pannello, non sul contenitore: sul contenitore
+   resterebbe visibile anche da chiuso e lascerebbe un vuoto sotto il pulsante. */
+.percorso__dentro > *:first-child {
+  margin-top: 22px;
+}
+
+.percorso__dentro p {
+  margin-bottom: 14px;
+}
+
+.percorso__dentro p:last-child {
+  margin-bottom: 0;
+}
+
+.percorso__anno {
+  font-family: "IBM Plex Mono", monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bordeaux);
+  margin-right: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .percorso {
+    transition: none;
   }
 }
 
@@ -384,7 +482,9 @@
 /* ----- Contatti (11) ----- */
 .contatti__griglia {
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin-inline: auto;
   gap: clamp(32px, 6vw, 72px);
   align-items: start;
 }

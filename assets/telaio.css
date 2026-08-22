@@ -46,11 +46,63 @@
 .barra__pezzo--mano { fill: var(--bordeaux); }
 .barra__pezzo--grigio { fill: var(--grigio-logo); }
 .barra__pezzo--arco { fill: #D8D8D8; }
+.barra__pezzo--manubrio { fill: var(--grigio-logo); transition: fill 220ms ease; }
 
-.barra__nome-img {
+body.menu-aperto .barra__pezzo--manubrio { fill: var(--grafite); }
+
+.barra__nome {
+  position: relative;
+  display: block;
+  height: 20px;
+}
+
+.barra__nome-img,
+.barra__nome-img--nero {
   height: 20px;
   width: auto;
   display: block;
+  transition: opacity 220ms ease;
+}
+
+.barra__nome-img--nero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+body.menu-aperto .barra__nome-img--nero { opacity: 1; }
+
+.barra__azioni {
+  display: inline-flex;
+  align-items: center;
+}
+
+.barra__accesso {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: 14px;
+  border-radius: 10px;
+  color: var(--grafite);
+  transition: color 220ms ease, background-color 220ms ease;
+}
+
+.barra__accesso:hover {
+  color: var(--bordeaux);
+  background: var(--grigio-chiaro);
+}
+
+.barra__accesso:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+.barra__accesso svg {
+  width: 22px;
+  height: 22px;
 }
 
 .barra__menu-btn {
@@ -166,10 +218,33 @@
   margin-top: 28px;
 }
 
-.menu-pannello__logo img {
-  width: 180px;
-  height: auto;
+/* Il marchio in cima al pannello, richiesta 1.1 di Matteo del 2026-08-22.
+   Era il PNG `logo-completo.png`, che ha la scritta e il manubrio in grigio chiaro: su
+   bianco pieno si perdevano, ed e' esattamente quello che lui ha segnalato. Adesso e' il
+   vettoriale, cosi' la scritta e il manubrio si possono portare in grafite. */
+.menu-pannello__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
+
+.menu-pannello__simbolo {
+  width: 118px;
+  height: auto;
+  display: block;
+}
+
+.menu-pannello__nome {
+  width: 168px;
+  height: auto;
+  display: block;
+}
+
+.pannello__pezzo--mano { fill: var(--bordeaux); }
+.pannello__pezzo--vertebra { fill: var(--grigio-logo); }
+.pannello__pezzo--manubrio { fill: var(--grafite); }
+.pannello__pezzo--arco { fill: #D8D8D8; }
 
 .menu-pannello__voci {
   list-style: none;
@@ -303,6 +378,7 @@
 .menu-pannello__lingua {
   display: flex;
   justify-content: center;
+  gap: 12px;
 }
 
 .menu-pannello__lingua button {
@@ -310,6 +386,21 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
+  opacity: 0.45;
+  transition: opacity 220ms ease;
+}
+
+.menu-pannello__lingua button[aria-pressed="true"] {
+  opacity: 1;
+  box-shadow: 0 2px 0 0 var(--bordeaux);
+}
+
+.menu-pannello__lingua button:not([disabled]):hover {
+  opacity: 1;
+}
+
+.menu-pannello__lingua button:disabled {
+  cursor: not-allowed;
 }
 
 .menu-pannello__lingua svg {
@@ -317,6 +408,7 @@
   height: 20px;
   border-radius: 3px;
   box-shadow: 0 0 0 1px var(--bordo);
+  display: block;
 }
 
 /* Fondo pagina */

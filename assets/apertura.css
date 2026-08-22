@@ -153,14 +153,14 @@
   line-height: 0.98;
   font-size: clamp(2.2rem, 4.6vw, 3.6rem);
   color: var(--grafite);
-  margin: 0 0 16px;
+  /* Il 2026-08-22 e' sparita la riga di testo che stava qui sotto (richiesta 5.5).
+     Con una riga in meno il titolo e il pulsante si attaccavano: lo spazio che serviva
+     al paragrafo passa al pulsante, cosi' il blocco resta bilanciato. */
+  margin: 0 0 6px;
 }
 
-.battuta--finale .sotto {
-  font-size: 1rem;
-  color: var(--grigio-testo);
-  margin: 0 0 26px;
-  max-width: 34ch;
+.battuta--finale > div {
+  margin-top: 30px;
 }
 
 /* invito a scorrere */
@@ -206,8 +206,8 @@
     max-width: 16ch;
   }
 
-  .battuta--finale .sotto {
-    margin-inline: auto;
+  .battuta--finale > div {
+    margin-top: 26px;
   }
 }
 

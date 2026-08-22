@@ -205,6 +205,24 @@
     gestisciMedia();
   }
 
+  /* ----- Tendina del percorso (7.2) ----- */
+  function initTendinaPercorso() {
+    const pulsante = document.querySelector('.percorso__apri');
+    const tendina = document.getElementById('percorso');
+    if (!pulsante || !tendina) return;
+
+    pulsante.addEventListener('click', function () {
+      // Commuta lo stato di apertura della tendina
+      const aperta = tendina.classList.toggle('aperta');
+
+      // Aggiorna lo stato per i lettori di schermo
+      pulsante.setAttribute('aria-expanded', aperta ? 'true' : 'false');
+
+      // Cambia la scritta del pulsante
+      pulsante.textContent = aperta ? 'Chiudi' : 'Il mio percorso';
+    });
+  }
+
   /* ----- Modulo contatti che apre WhatsApp (11) ----- */
   function initModuloContatti() {
     const form = document.getElementById('form-contatti');
@@ -239,5 +257,6 @@
 
   initFotoCarousel();
   initServiziCarousel();
+  initTendinaPercorso();
   initModuloContatti();
 })();
