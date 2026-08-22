@@ -349,7 +349,9 @@ p {
   }
 
   .pennellata,
-  .fascia-foto.visibile .pennellata {
+  .fascia-foto.visibile .pennellata,
+  .bottone,
+  .bottone--vuoto {
     transition: none;
   }
 

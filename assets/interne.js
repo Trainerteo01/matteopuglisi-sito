@@ -47,6 +47,8 @@
     let attaccato = false;
     let caricato = false;
 
+    function suRidimensiona() { misura(); sveglia(); }
+
     function misura() {
       const r = contenitore.getBoundingClientRect();
       cima = r.top + window.scrollY;
@@ -91,7 +93,7 @@
       misura();
       if (!attaccato) {
         window.addEventListener('scroll', sveglia, { passive: true });
-        window.addEventListener('resize', function () { misura(); sveglia(); }, { passive: true });
+        window.addEventListener('resize', suRidimensiona, { passive: true });
         attaccato = true;
       }
       sveglia();
@@ -100,6 +102,7 @@
     function disattiva() {
       if (attaccato) {
         window.removeEventListener('scroll', sveglia);
+        window.removeEventListener('resize', suRidimensiona);
         attaccato = false;
         gira = false;
       }

@@ -198,6 +198,9 @@
 }
 
 /* ----- Titoli di studio e dove lavoro (chi sono) ----- */
+/* NON USATA OGGI: la tabella dei titoli di studio, scritta per chi-sono.html. Il 2026-08-22 si e' deciso che quel contenuto vive
+   nella pagina iniziale, quindi la pagina non esiste. La regola resta perche' il design
+   package prevede ancora quella pagina: se non si fara', si cancella. */
 .tabella-semplice {
   width: 100%;
   border-collapse: collapse;
@@ -244,6 +247,9 @@
 }
 
 /* ----- Pagina contatti, a tutta pagina ----- */
+/* NON USATA OGGI: la pagina contatti a se stante. Il 2026-08-22 si e' deciso che quel contenuto vive
+   nella pagina iniziale, quindi la pagina non esiste. La regola resta perche' il design
+   package prevede ancora quella pagina: se non si fara', si cancella. */
 .contatti-pagina {
   padding-top: 112px;
   min-height: 100vh;

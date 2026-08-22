@@ -9,6 +9,11 @@
   const titoli = Array.from(document.querySelectorAll('.apertura__titolo'));
   const fermo = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Questo file oggi lo carica solo la pagina iniziale, che l'apertura ce l'ha sempre.
+  // La guardia serve al domani: se finisse in una pagina senza apertura, misura() farebbe
+  // getBoundingClientRect() su null e romperebbe tutto il resto dello script.
+  if (!sezione || !marchio) return;
+
   // Con animazioni ridotte il marchio e' gia' intero, l'ultima battuta e' quella viva
   // e il titolo completo e' gia' visible.
   if (fermo) {
