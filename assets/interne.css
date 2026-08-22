@@ -60,8 +60,20 @@
   text-align: center;
 }
 
+/* Il blocco sta al centro della pagina, ma i paragrafi lunghi si allineano a sinistra:
+   sei righe centrate hanno il bordo sinistro a zigzag e si leggono peggio. Titoli e
+   righe corte restano centrati. */
 .pagina-testo-centro p {
   margin-inline: auto;
+  text-align: left;
+}
+
+.pagina-testo-centro p.riga-corta,
+.pagina-testo-centro .occhiello,
+.pagina-testo-centro h1,
+.pagina-testo-centro h2,
+.pagina-testo-centro h3 {
+  text-align: center;
 }
 
 /* ----- Sottovoci (militare, calcio) ----- */
@@ -241,5 +253,653 @@
 @media (prefers-reduced-motion: reduce) {
   .pagina-intestazione img {
     transform: none;
+  }
+}
+
+/* =========================================================
+   Pagina Allenamento 1:1
+   ========================================================= */
+
+/* Intestazione su bianco */
+.fascia--all11-intestazione {
+  padding-top: calc(var(--altezza-barra) + clamp(48px, 7vw, 96px));
+}
+
+.all11-sottotitolo {
+  font-size: 1.125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Fascia foto */
+.fascia-foto--all11 {
+  height: min(56vh, 460px);
+}
+
+/* Descrizione */
+.all11-descrizione {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.all11-nota {
+  font-size: 0.875rem;
+  color: var(--grigio-testo);
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* Scheda PDF */
+.all11-scheda-pdf {
+  max-width: 520px;
+  width: 100%;
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: 16px;
+  box-shadow: var(--ombra);
+  padding: clamp(24px, 4vw, 40px);
+  text-align: center;
+}
+
+.all11-scheda-pdf__titolo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  margin: 0 0 0.6rem;
+  color: var(--grafite);
+}
+
+.all11-scheda-pdf__riga {
+  font-size: 1rem;
+  color: var(--grigio-testo);
+  margin: 0 0 1.2rem;
+  max-width: none;
+}
+
+/* Il posto della copertina e' piccolo di proposito: a piena larghezza era un rettangolo
+   vuoto alto seicento pixel, e un buco di quelle dimensioni sembra un errore di
+   caricamento, non un segnaposto. Cosi' invece si legge come "la copertina arrivera'". */
+.all11-scheda-pdf__copertina {
+  aspect-ratio: 3 / 4;
+  width: 168px;
+  margin: 0 auto 1.2rem;
+  background: var(--bianco-freddo);
+  border: 1px dashed var(--bordo);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.all11-scheda-pdf__copertina .all11-scheda-pdf__segnaposto {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.all11-scheda-pdf__segnaposto {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--grigio-testo);
+}
+
+.all11-scheda-pdf .bottone {
+  margin-bottom: 0.8rem;
+}
+
+.all11-scheda-pdf .bottone:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.all11-scheda-pdf__attesa {
+  font-size: 0.8125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: none;
+}
+
+/* Social */
+.all11-social__invito {
+  font-size: 1.0625rem;
+  color: var(--grigio-testo);
+  margin: 0 0 1.2rem;
+  max-width: none;
+}
+
+.all11-social__fila {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.all11-social__fila a {
+  color: var(--grigio-testo);
+  transition: color 220ms ease;
+}
+
+.all11-social__fila a:hover {
+  color: var(--bordeaux);
+}
+
+/* Modulo di contatto */
+.all11-contatti__intro {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.all11-form {
+  max-width: 720px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.all11-form__riga {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.all11-form__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.all11-form__campo label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--grafite);
+}
+
+.all11-form__campo input,
+.all11-form__campo textarea {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 1rem;
+  padding: 12px 14px;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+  background: var(--bianco);
+  color: var(--grafite);
+  resize: vertical;
+}
+
+.all11-form__campo input:focus,
+.all11-form__campo textarea:focus {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 1px;
+  border-color: var(--bordeaux);
+}
+
+.all11-form .bottone {
+  align-self: flex-start;
+}
+
+.all11-form__nota {
+  font-size: 0.8125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: none;
+}
+
+@media (max-width: 560px) {
+  .all11-form__riga {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .all11-social__fila a {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   Pagina Preparazione atletica calcio
+   ========================================================= */
+
+/* Intestazione su bianco */
+.fascia--calcio-intestazione {
+  padding-top: calc(var(--altezza-barra) + clamp(48px, 7vw, 96px));
+}
+
+.calcio-sottotitolo {
+  font-size: 1.125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Fascia foto */
+.fascia-foto--calcio {
+  height: min(56vh, 460px);
+}
+
+/* Descrizione */
+.calcio-descrizione {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.calcio-nota {
+  font-size: 0.875rem;
+  color: var(--grigio-testo);
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* Barretta di navigazione appiccicosa */
+.calcio-nav {
+  position: sticky;
+  top: var(--altezza-barra);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--bordo);
+}
+
+.calcio-nav a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--grigio-testo);
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.calcio-nav a:hover,
+.calcio-nav a.attivo {
+  color: var(--bordeaux);
+}
+
+/* Sezioni alternate foto/testo */
+.calcio-sezione {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+.calcio-sezione--invertita .calcio-sezione__foto {
+  order: 2;
+}
+
+.calcio-sezione--invertita .calcio-sezione__testo {
+  order: 1;
+}
+
+.calcio-sezione__foto {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.calcio-sezione__foto img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.calcio-sezione__testo h2 {
+  margin-bottom: 1rem;
+}
+
+.calcio-sezione__testo p {
+  max-width: 62ch;
+  margin-bottom: 1.5rem;
+}
+
+.calcio-sezione__testo .all11-scheda-pdf {
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .calcio-sezione {
+    grid-template-columns: 1fr;
+  }
+
+  .calcio-sezione--invertita .calcio-sezione__foto,
+  .calcio-sezione--invertita .calcio-sezione__testo {
+    order: unset;
+  }
+
+  .calcio-sezione__foto {
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
+
+/* Rispetto delle animazioni ridotte */
+@media (prefers-reduced-motion: reduce) {
+  .calcio-nav a {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   Pagina Preparazione fisica militare
+   ========================================================= */
+
+/* Intestazione su bianco */
+.fascia--militare-intestazione {
+  padding-top: calc(var(--altezza-barra) + clamp(48px, 7vw, 96px));
+}
+
+.militare-sottotitolo {
+  font-size: 1.125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Fascia foto */
+.fascia-foto--militare {
+  height: min(56vh, 460px);
+}
+
+/* Descrizione */
+.militare-descrizione {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.militare-nota {
+  font-size: 0.875rem;
+  color: var(--grigio-testo);
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* Barretta di navigazione appiccicosa */
+.militare-nav {
+  position: sticky;
+  top: var(--altezza-barra);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--bordo);
+}
+
+.militare-nav a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--grigio-testo);
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.militare-nav a:hover,
+.militare-nav a.attivo {
+  color: var(--bordeaux);
+}
+
+/* Rispetto delle animazioni ridotte */
+@media (prefers-reduced-motion: reduce) {
+  .militare-nav a {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   Pagina Collaborazione con le societa' di calcio
+   ========================================================= */
+
+/* Intestazione su bianco */
+.fascia--societa-intestazione {
+  padding-top: calc(var(--altezza-barra) + clamp(48px, 7vw, 96px));
+}
+
+.societa-sottotitolo {
+  font-size: 1.125rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Fascia foto */
+.fascia-foto--societa {
+  height: min(56vh, 460px);
+}
+
+/* Descrizione */
+.societa-descrizione {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* Tre passaggi del servizio */
+.societa-passaggi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.societa-passaggio {
+  padding: clamp(20px, 2.5vw, 28px);
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: 16px;
+  box-shadow: var(--ombra);
+}
+
+.societa-passaggio__numero {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: var(--bordeaux);
+  line-height: 1;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.societa-passaggio__titolo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  color: var(--grafite);
+}
+
+.societa-passaggio__testo {
+  font-size: 1rem;
+  color: var(--grigio-testo);
+  margin: 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .societa-passaggi {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Formule di collaborazione (segnaposto) */
+.societa-formule__intro {
+  max-width: 62ch;
+  margin-inline: auto;
+  margin-bottom: clamp(24px, 4vw, 40px);
+}
+
+.societa-formule {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.societa-formula {
+  max-width: 520px;
+  width: 100%;
+  margin-inline: auto;
+  background: var(--bianco);
+  border: 1px solid var(--bordo);
+  border-radius: 16px;
+  box-shadow: var(--ombra);
+  padding: clamp(24px, 4vw, 40px);
+  text-align: center;
+}
+
+.societa-formula__titolo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  margin: 0 0 0.6rem;
+  color: var(--grigio-testo);
+}
+
+.societa-formula__riga {
+  font-size: 1rem;
+  color: var(--grigio-testo);
+  margin: 0 0 1.2rem;
+  max-width: none;
+}
+
+.societa-formula .bottone:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .societa-formule {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modulo di contatto */
+.societa-contatti__intro {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+/* =========================================================
+   Pagine legali (privacy, cookie, note legali)
+   ========================================================= */
+
+.legale-intestazione {
+  padding-top: calc(var(--altezza-barra) + clamp(48px, 7vw, 80px));
+  padding-bottom: clamp(32px, 5vw, 56px);
+  background: var(--bianco-freddo);
+}
+
+.legale-intestazione__testo {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+}
+
+.legale-intestazione__testo .occhiello {
+  color: var(--bordeaux);
+  margin-bottom: 0.6rem;
+}
+
+.legale-intestazione__testo .titolo-grande {
+  color: var(--grafite);
+  margin-bottom: 0;
+}
+
+.legale-corpo {
+  max-width: 70ch;
+  margin-inline: auto;
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 5vw, 48px);
+}
+
+.legale-corpo h2 {
+  margin-top: clamp(32px, 4vw, 48px);
+  margin-bottom: 1rem;
+}
+
+.legale-corpo h2:first-child {
+  margin-top: 0;
+}
+
+.legale-corpo p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.legale-corpo ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.legale-corpo li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.legale-aggiornamento {
+  margin-top: clamp(40px, 5vw, 64px);
+  padding-top: 24px;
+  border-top: 1px solid var(--bordo);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8125rem;
+  color: var(--grigio-testo);
+}
+
+/* =========================================================
+   Ritmo verticale delle pagine interne
+   ========================================================= */
+
+/* Le pagine interne sono fatte di blocchi corti, non di grandi scene come la pagina
+   iniziale: col respiro della home (fino a 130px sopra e sotto ogni fascia) fra un
+   blocco e l'altro restavano quasi trecento pixel di bianco, e la pagina sembrava
+   vuota invece che arieggiata. Qui si stringe di circa un terzo. */
+main .fascia {
+  padding-block: clamp(52px, 6vw, 88px);
+}
+
+/* Due fasce bianche di fila non hanno bisogno del doppio respiro in mezzo. */
+main .fascia + .fascia:not(.fascia--grigia) {
+  padding-top: clamp(28px, 3.5vw, 48px);
+}
+
+/* Subito dopo una fascia di foto il testo puo' cominciare piu' vicino: la pennellata
+   fa gia' da stacco. */
+main .fascia-foto + .fascia {
+  padding-top: clamp(36px, 4.5vw, 64px);
+}
+
+/* Nelle sezioni del militare i programmi sono due, non uno: impilati allungavano la
+   colonna del testo e lasciavano un vuoto enorme accanto alla foto. Si affiancano da
+   soli, senza toccare il segno in pagina: la colonna del testo diventa una griglia a due
+   colonne e il titolo col paragrafo la attraversano tutta. Vale solo quando le schede
+   sono davvero due, cosi' nel calcio, che ne ha una sola, non cambia niente. */
+@media (min-width: 901px) {
+  .calcio-sezione__testo:has(.all11-scheda-pdf:nth-of-type(2)) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .calcio-sezione__testo:has(.all11-scheda-pdf:nth-of-type(2)) > h2,
+  .calcio-sezione__testo:has(.all11-scheda-pdf:nth-of-type(2)) > p {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  /* La foto resta accanto al testo mentre si scorre, cosi' la sezione non si sbilancia
+     quando il testo e' piu' alto della foto. */
+  .calcio-sezione__foto {
+    position: sticky;
+    top: calc(var(--altezza-barra) + 90px);
   }
 }

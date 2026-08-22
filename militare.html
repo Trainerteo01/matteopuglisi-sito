@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Area riservata · Matteo Puglisi · Chinesiologo</title>
-  <meta name="description" content="Area riservata in arrivo. Presto troverai i tuoi programmi, la videochiamata e la tua pagina personale.">
+  <title>Preparazione fisica militare · Matteo Puglisi, Chinesiologo</title>
+  <meta name="description" content="Esercito, Polizia, Carabinieri. Arrivare al giorno della prova sapendo già i tuoi tempi, invece di sperare.">
+  <meta property="og:title" content="Matteo Puglisi · Chinesiologo">
+  <meta property="og:description" content="Esercito, Polizia, Carabinieri. Arrivare al giorno della prova sapendo già i tuoi tempi, invece di sperare.">
+  <meta property="og:image" content="assets/foto/hero-pista-forze.jpg">
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/telaio.css">
   <link rel="stylesheet" href="assets/interne.css">
@@ -167,7 +170,7 @@
     </li>
     <li class="menu-voce">
       <div class="menu-voce__intestazione">
-        <a class="menu-voce__link" href="militare.html">Preparazione fisica militare</a>
+        <a class="menu-voce__link voce--corrente" href="militare.html">Preparazione fisica militare</a>
         <button type="button" class="menu-voce__apri" aria-expanded="false" aria-label="Apri sottovoci militari">
           <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -253,14 +256,231 @@
 
 <main>
 
-  <section class="fascia area-riservata">
-    <div class="contenuto pagina-testo-centro" style="padding-top: 112px;">
-      <span class="occhiello">Area riservata</span>
-      <h1 class="titolo-grande">Sta arrivando.</h1>
-      <p>Qui dentro troverai i tuoi programmi, la videochiamata con me e la tua pagina personale. Ci sto lavorando.</p>
-      <a class="bottone" href="https://wa.me/393453425891">Scrivimi su WhatsApp</a>
+<!-- 1. Intestazione, su bianco -->
+<section class="fascia fascia--militare-intestazione">
+  <div class="contenuto" data-anima>
+    <p class="occhiello">PREPARAZIONE FISICA MILITARE</p>
+    <h1 class="titolo-grande">ARRIVA ALLA PROVA SAPENDO GIÀ I TUOI TEMPI.</h1>
+    <p class="militare-sottotitolo">Esercito, Polizia, Carabinieri.</p>
+  </div>
+</section>
+
+<!-- 2. Prima fascia di foto -->
+<div class="fascia-foto fascia-foto--militare">
+  <img src="assets/foto/hero-pista-forze.jpg" alt="Gli stemmi delle tre forze.">
+  <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="pennellata pennellata--basso"
+       viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <use href="#pennellata-a" xlink:href="#pennellata-a"/>
+  </svg>
+</div>
+
+<!-- 3. La descrizione, su bianco -->
+<section class="fascia">
+  <div class="contenuto pagina-testo-centro" data-anima>
+    <p class="militare-descrizione">Le prove fisiche dei concorsi sembrano alla portata di chiunque, e per questo quasi tutti si allenano a caso. Poi il giorno della prova si scopre il vuoto. Si parte misurando quello che fai adesso, con il cronometro in mano. Da lì costruiamo le settimane che ti separano dal bando, mettendo il lavoro dove serve invece che dove viene comodo.</p>
+    <p class="militare-nota">I minimi cambiano a ogni bando. I riferimenti che uso sono quelli del bando in corso, non una tabella vecchia trovata in rete.</p>
+  </div>
+</section>
+
+<!-- 4. La barretta dei tre passaggi, appiccicata in alto -->
+<nav class="militare-nav" aria-label="Sezioni preparazione militare">
+  <a href="#esercito">Esercito</a>
+  <a href="#polizia">Polizia</a>
+  <a href="#carabinieri">Carabinieri</a>
+</nav>
+
+<!-- 5a. Esercito -->
+<section class="fascia" id="esercito">
+  <div class="contenuto calcio-sezione" data-anima>
+    <div class="calcio-sezione__foto">
+      <img src="assets/foto/sfondo-esercito.jpg" alt="Uniforme dell'Esercito Italiano.">
     </div>
-  </section>
+    <div class="calcio-sezione__testo">
+      <h2 class="titolo-sezione">ESERCITO</h2>
+      <!-- BOZZA DA APPROVARE, scritta da Michele il 2026-08-22 -->
+      <p>Le prove dell'Esercito si superano con la costanza, non con la forza bruta: chi arriva senza preparazione paga sulla corsa e sulla parte di forza. Si comincia cronometrando quello che riesci a fare oggi, senza sconti, e da lì si costruiscono le settimane che mancano al bando, mettendo il lavoro dove sei scoperto invece che dove ti viene facile.</p>
+      <!-- IN ATTESA DEL PDF E DEL PREZZO -->
+      <div class="all11-scheda-pdf">
+        <p class="occhiello">PROGRAMMA</p>
+        <h3 class="all11-scheda-pdf__titolo">Linee guida per le prove fisiche</h3>
+        <div class="all11-scheda-pdf__copertina">
+          <span class="all11-scheda-pdf__segnaposto">COPERTINA IN ARRIVO</span>
+        </div>
+        <button type="button" class="bottone" disabled>Presto disponibile</button>
+        <p class="all11-scheda-pdf__attesa">Il programma è in preparazione.</p>
+      </div>
+      <!-- IN ATTESA DEL PDF E DEL PREZZO -->
+      <div class="all11-scheda-pdf">
+        <p class="occhiello">PROGRAMMA</p>
+        <h3 class="all11-scheda-pdf__titolo">Programmazione standard di 5 settimane</h3>
+        <div class="all11-scheda-pdf__copertina">
+          <span class="all11-scheda-pdf__segnaposto">COPERTINA IN ARRIVO</span>
+        </div>
+        <button type="button" class="bottone" disabled>Presto disponibile</button>
+        <p class="all11-scheda-pdf__attesa">Il programma è in preparazione.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5b. Polizia -->
+<section class="fascia" id="polizia">
+  <div class="contenuto calcio-sezione calcio-sezione--invertita" data-anima>
+    <div class="calcio-sezione__foto">
+      <img src="assets/foto/sfondo-polizia.jpg" alt="Agenti della Polizia di Stato.">
+    </div>
+    <div class="calcio-sezione__testo">
+      <h2 class="titolo-sezione">POLIZIA</h2>
+      <!-- BOZZA DA APPROVARE, scritta da Michele il 2026-08-22 -->
+      <p>La prova della Polizia è breve, e proprio per questo non perdona: si decide in pochi minuti e la differenza la fa quanto sei abituato a esprimerti a freddo, senza riscaldamento lungo. Si lavora sulla parte che ti manca e si simula la prova nelle condizioni vere, così il giorno dell'esame non scopri niente di nuovo.</p>
+      <!-- IN ATTESA DEL PDF E DEL PREZZO -->
+      <div class="all11-scheda-pdf">
+        <p class="occhiello">PROGRAMMA</p>
+        <h3 class="all11-scheda-pdf__titolo">Linee guida per le prove fisiche</h3>
+        <div class="all11-scheda-pdf__copertina">
+          <span class="all11-scheda-pdf__segnaposto">COPERTINA IN ARRIVO</span>
+        </div>
+        <button type="button" class="bottone" disabled>Presto disponibile</button>
+        <p class="all11-scheda-pdf__attesa">Il programma è in preparazione.</p>
+      </div>
+      <!-- IN ATTESA DEL PDF E DEL PREZZO -->
+      <div class="all11-scheda-pdf">
+        <p class="occhiello">PROGRAMMA</p>
+        <h3 class="all11-scheda-pdf__titolo">Programmazione standard di 5 settimane</h3>
+        <div class="all11-scheda-pdf__copertina">
+          <span class="all11-scheda-pdf__segnaposto">COPERTINA IN ARRIVO</span>
+        </div>
+        <button type="button" class="bottone" disabled>Presto disponibile</button>
+        <p class="all11-scheda-pdf__attesa">Il programma è in preparazione.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5c. Carabinieri -->
+<section class="fascia" id="carabinieri">
+  <div class="contenuto calcio-sezione" data-anima>
+    <div class="calcio-sezione__foto">
+      <img src="assets/foto/sfondo-carabinieri.jpg" alt="Carabinieri in alta uniforme.">
+    </div>
+    <div class="calcio-sezione__testo">
+      <h2 class="titolo-sezione">CARABINIERI</h2>
+      <!-- BOZZA DA APPROVARE, scritta da Michele il 2026-08-22 -->
+      <p>Per i Carabinieri conta arrivare pronti su più prove nello stesso giorno, e la fatica di una si sente su quella dopo. La preparazione tiene conto dell'ordine e dei recuperi, non solo dei singoli esercizi. Si misura all'inizio, si rimisura durante, e il programma si aggiusta su quei numeri.</p>
+      <!-- IN ATTESA DEL PDF E DEL PREZZO -->
+      <div class="all11-scheda-pdf">
+        <p class="occhiello">PROGRAMMA</p>
+        <h3 class="all11-scheda-pdf__titolo">Linee guida per le prove fisiche</h3>
+        <div class="all11-scheda-pdf__copertina">
+          <span class="all11-scheda-pdf__segnaposto">COPERTINA IN ARRIVO</span>
+        </div>
+        <button type="button" class="bottone" disabled>Presto disponibile</button>
+        <p class="all11-scheda-pdf__attesa">Il programma è in preparazione.</p>
+      </div>
+      <!-- IN ATTESA DEL PDF E DEL PREZZO -->
+      <div class="all11-scheda-pdf">
+        <p class="occhiello">PROGRAMMA</p>
+        <h3 class="all11-scheda-pdf__titolo">Programmazione standard di 5 settimane</h3>
+        <div class="all11-scheda-pdf__copertina">
+          <span class="all11-scheda-pdf__segnaposto">COPERTINA IN ARRIVO</span>
+        </div>
+        <button type="button" class="bottone" disabled>Presto disponibile</button>
+        <p class="all11-scheda-pdf__attesa">Il programma è in preparazione.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. I social, su fondo bianco-freddo -->
+<section class="fascia fascia--grigia">
+  <div class="contenuto pagina-testo-centro" data-anima>
+    <p class="all11-social__invito">Seguimi, il lavoro di tutti i giorni lo racconto lì.</p>
+    <div class="all11-social__fila">
+      <a href="https://www.instagram.com/matteopuglisi_pt" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <circle cx="12" cy="12" r="5"/>
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="https://www.tiktok.com/@matteopuglisi_pt" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
+          <path d="M16.5 2h-3v13.5a3.5 3.5 0 1 1-3.5-3.5c.3 0 .7 0 1 .1V9a6.5 6.5 0 0 0-1-.1 6.5 6.5 0 1 0 6.5 6.5V8.8a9.4 9.4 0 0 0 5.5 1.8V7.5a6.4 6.4 0 0 1-5.5-5.5Z"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/share/1Dfbzm2XtL/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/matteo-puglisi-80511026b" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
+          <path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.5h.1a3.8 3.8 0 0 1 3.4-1.9c3.7 0 4.3 2.4 4.3 5.5v6.3ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2ZM7.1 20.4H3.5V9h3.6v11.4Z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Il modulo di contatto, su bianco -->
+<section class="fascia">
+  <div class="contenuto pagina-testo-centro" data-anima>
+    <p class="occhiello">PARLIAMONE</p>
+    <h2 class="titolo-sezione">QUINDICI MINUTI PER CAPIRE SE HA SENSO.</h2>
+    <p class="all11-contatti__intro">La prima chiamata di valutazione è gratuita e dura un quarto d'ora. Mi racconti la tua situazione, ti dico cosa si può fare e cosa no. Se non è roba mia, te lo dico.</p>
+  </div>
+  <form class="contatti__form all11-form" id="form-contatti">
+    <div class="all11-form__riga">
+      <div class="all11-form__campo">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+      <div class="all11-form__campo">
+        <label for="cognome">Cognome</label>
+        <input type="text" id="cognome" name="cognome">
+      </div>
+    </div>
+    <div class="all11-form__campo">
+      <label for="obiettivo">Obiettivo</label>
+      <input type="text" id="obiettivo" name="obiettivo">
+    </div>
+    <div class="all11-form__campo">
+      <label for="telefono">Telefono</label>
+      <input type="tel" id="telefono" name="telefono">
+    </div>
+    <div class="all11-form__campo">
+      <label for="messaggio">Messaggio</label>
+      <textarea id="messaggio" name="messaggio" rows="5" required></textarea>
+    </div>
+    <button type="submit" class="bottone">Scrivimi su WhatsApp</button>
+    <p class="all11-form__nota">Si apre WhatsApp con il messaggio già scritto. Lo mandi tu.</p>
+  </form>
+</section>
+
+<script>
+(function() {
+  var nav = document.querySelector('.militare-nav');
+  if (!nav) return;
+  var collegamenti = nav.querySelectorAll('a');
+  var sezioni = [];
+  collegamenti.forEach(function(a) {
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if (el) sezioni.push({ el: el, a: a });
+  });
+  if (!sezioni.length) return;
+  var osservatore = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        collegamenti.forEach(function(a) { a.classList.remove('attivo'); });
+        var trovata = sezioni.find(function(s) { return s.el === entry.target; });
+        if (trovata) trovata.a.classList.add('attivo');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sezioni.forEach(function(s) { osservatore.observe(s.el); });
+})();
+</script>
 
 </main>
 
@@ -357,6 +577,9 @@
 </footer>
 
 <script src="assets/telaio.js"></script>
+<script src="assets/interne.js"></script>
+
+<script src="assets/modulo.js"></script>
 
 </body>
 </html>

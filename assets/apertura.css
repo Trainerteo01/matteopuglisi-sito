@@ -26,15 +26,20 @@
   /* La barra in alto e' fissa e sta sopra questa scena. Senza questo spazio il
      contenuto si centra su tutta l'altezza dello schermo e il marchio, che sul
      telefono e' grande, finisce sotto la barra e si vede tagliato. */
-  padding-top: var(--altezza-barra);
+  padding-top: calc(var(--altezza-barra) + 24px);
   box-sizing: border-box;
 }
 
 /* il marchio */
 .apertura__marchio {
   justify-self: center;
-  width: min(440px, 38vw);
-  aspect-ratio: 1 / 1;
+  /* Cresciuto il 2026-08-22: Matteo vuole il marchio piu' grande e piu' al centro,
+     la scena com'era gli sembrava vuota. */
+  width: min(560px, 44vw);
+  /* Il riquadro segue la forma vera del disegno (viewBox 740x645) invece di essere
+     quadrato: da quadrato restavano un'ottantina di pixel di vuoto sopra e sotto, e la
+     scritta sotto il marchio finiva staccata. */
+  aspect-ratio: 740 / 645;
   will-change: transform;
 }
 
@@ -46,7 +51,7 @@
 
 .apertura__titoli {
   position: relative;
-  margin-top: 16px;
+  margin-top: 4px;
   /* Spazio per la riga piu' lunga, cioe' i tre titoli insieme dell'ultimo stadio.
      Con 1.4em quella andava a capo e finiva sopra il testo sotto. */
   min-height: 2.8em;
@@ -80,19 +85,28 @@
   transform: none;
 }
 
+/* Il contorno del marchio intero, fermo, sempre acceso (deciso il 2026-08-22).
+   Risolve il problema segnalato da Matteo: all'apertura si vedeva solo la mano e non si
+   capiva che fosse un marchio. Adesso la sagoma c'e' da subito e il colore la riempie. */
+.contorno {
+  fill: none;
+  stroke: #DCDCDC;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
 .pezzo {
   opacity: 0;
-  transform: translateY(18px);
-  /* Uscita svelta, entrata morbida: risalendo di corsa una dissolvenza da 700ms
-     sembra melma, scendendo invece la lentezza e' proprio quello che si vuole. */
-  transition: opacity 260ms ease-out, transform 260ms ease-out;
+  /* Niente scivolamento: contro un contorno fermo il colore che entra spostato di 18px si
+     stacca dalla traccia e il disallineamento si vede. Entra fermo, in dissolvenza sul
+     posto. Uscita piu' svelta dell'entrata: risalendo di corsa la lentezza sembra melma. */
+  transition: opacity 240ms ease-out;
 }
 
 .pezzo.acceso {
-  transition: opacity 700ms cubic-bezier(.22, .61, .36, 1),
-              transform 700ms cubic-bezier(.22, .61, .36, 1);
+  transition: opacity 520ms cubic-bezier(.22, .61, .36, 1);
   opacity: 1;
-  transform: none;
 }
 
 .pz-mano {
@@ -133,7 +147,7 @@
 }
 
 .battuta p {
-  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
   line-height: 1.28;
   font-weight: 500;
   color: var(--grafite);
@@ -151,7 +165,7 @@
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 0.98;
-  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
   color: var(--grafite);
   /* Il 2026-08-22 e' sparita la riga di testo che stava qui sotto (richiesta 5.5).
      Con una riga in meno il titolo e il pulsante si attaccavano: lo spazio che serviva
@@ -191,7 +205,7 @@
   }
 
   .apertura__marchio {
-    width: min(300px, 64vw);
+    width: min(360px, 74vw);
   }
 
   .apertura__battute {

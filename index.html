@@ -161,7 +161,7 @@
   <ul class="menu-pannello__voci">
     <li class="menu-voce">
       <div class="menu-voce__intestazione">
-        <a class="menu-voce__link" href="chi-sono.html">Chi sono</a>
+        <a class="menu-voce__link" href="index.html#chi-sono">Chi sono</a>
       </div>
     </li>
     <li class="menu-voce">
@@ -179,9 +179,9 @@
         </button>
       </div>
       <ul class="menu-voce__sottovoci">
-        <li class="menu-voce"><a class="menu-voce__link" href="militare-esercito.html">Esercito</a></li>
-        <li class="menu-voce"><a class="menu-voce__link" href="militare-carabinieri.html">Carabinieri</a></li>
-        <li class="menu-voce"><a class="menu-voce__link" href="militare-polizia.html">Polizia</a></li>
+        <li class="menu-voce"><a class="menu-voce__link" href="militare.html#esercito">Esercito</a></li>
+        <li class="menu-voce"><a class="menu-voce__link" href="militare.html#carabinieri">Carabinieri</a></li>
+        <li class="menu-voce"><a class="menu-voce__link" href="militare.html#polizia">Polizia</a></li>
       </ul>
     </li>
     <li class="menu-voce">
@@ -194,9 +194,9 @@
         </button>
       </div>
       <ul class="menu-voce__sottovoci">
-        <li class="menu-voce"><a class="menu-voce__link" href="calcio-attivita-di-base.html">Attività di base</a></li>
-        <li class="menu-voce"><a class="menu-voce__link" href="calcio-pre-agonistica.html">Pre-agonistica</a></li>
-        <li class="menu-voce"><a class="menu-voce__link" href="calcio-agonistica.html">Agonistica</a></li>
+        <li class="menu-voce"><a class="menu-voce__link" href="calcio.html#attivita-di-base">Attività di base</a></li>
+        <li class="menu-voce"><a class="menu-voce__link" href="calcio.html#pre-agonistica">Pre-agonistica</a></li>
+        <li class="menu-voce"><a class="menu-voce__link" href="calcio.html#agonistica">Agonistica</a></li>
       </ul>
     </li>
     <li class="menu-voce">
@@ -206,7 +206,7 @@
     </li>
     <li class="menu-voce">
       <div class="menu-voce__intestazione">
-        <a class="menu-voce__link" href="contatti.html">Contatti</a>
+        <a class="menu-voce__link" href="index.html#contatti">Contatti</a>
       </div>
     </li>
   </ul>
@@ -266,6 +266,25 @@
       <div class="apertura__marchio" id="marchio">
         <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-125 5 740 645" role="img"
              aria-label="Il marchio di Matteo Puglisi si compone pezzo per pezzo">
+          <!-- Il contorno del marchio intero, visibile dal primo istante: chi arriva deve
+               capire subito che cos'e'. Il colore poi lo riempie pezzo per pezzo scorrendo. -->
+          <g aria-hidden="true">
+            <use href="#arco-chiaro" xlink:href="#arco-chiaro" class="contorno"/>
+            <use href="#arco-mano" xlink:href="#arco-mano" class="contorno"/>
+            <use href="#mano-dito" xlink:href="#mano-dito" class="contorno"/>
+            <use href="#vertebra-8" xlink:href="#vertebra-8" class="contorno"/>
+            <use href="#vertebra-7" xlink:href="#vertebra-7" class="contorno"/>
+            <use href="#vertebra-6" xlink:href="#vertebra-6" class="contorno"/>
+            <use href="#vertebra-5" xlink:href="#vertebra-5" class="contorno"/>
+            <use href="#vertebra-4" xlink:href="#vertebra-4" class="contorno"/>
+            <use href="#vertebra-3" xlink:href="#vertebra-3" class="contorno"/>
+            <use href="#vertebra-2" xlink:href="#vertebra-2" class="contorno"/>
+            <use href="#vertebra-1" xlink:href="#vertebra-1" class="contorno"/>
+            <use href="#manubrio-1" xlink:href="#manubrio-1" class="contorno"/>
+            <use href="#manubrio-2" xlink:href="#manubrio-2" class="contorno"/>
+            <use href="#manubrio-3" xlink:href="#manubrio-3" class="contorno"/>
+            <use href="#manubrio-4" xlink:href="#manubrio-4" class="contorno"/>
+          </g>
           <use href="#arco-chiaro" xlink:href="#arco-chiaro"  class="pezzo pz-arco"     data-pezzo="14"/>
           <use href="#arco-mano" xlink:href="#arco-mano"    class="pezzo pz-mano"     data-pezzo="0"/>
           <use href="#mano-dito" xlink:href="#mano-dito"    class="pezzo pz-mano"     data-pezzo="0"/>
@@ -319,11 +338,7 @@
     <div class="foto-carousel__velo"></div>
 
     <div class="foto-carousel__testo">
-      <h2 class="titolo-sezione">
-        <span class="foto-carousel__parola viva">CAMPO</span>
-        <span class="foto-carousel__parola">PALESTRA</span>
-        <span class="foto-carousel__parola">PISTA</span>
-      </h2>
+      <h2 class="titolo-sezione">LAVORIAMO IN CAMPO, IN PALESTRA, SU PISTA</h2>
     </div>
 
     <div class="foto-carousel__indicatori" role="tablist" aria-label="Seleziona una parola">
@@ -338,7 +353,7 @@
   </section>
 
   <!-- 7.2 Presentazione -->
-  <section class="fascia presentazione">
+  <section class="fascia presentazione" id="chi-sono">
     <div class="contenuto presentazione__griglia">
       <div class="presentazione__foto">
         <div class="presentazione__grande">
@@ -405,7 +420,7 @@
 
         <article class="servizio-card">
           <div class="servizio-card__foto">
-            <img src="assets/foto/servizio-calcio.jpg" alt="Preparazione atletica calcio" width="800" height="600" loading="lazy">
+            <img src="assets/foto/servizio-calcio-tre.jpg" alt="Attività di base, pre-agonistica e agonistica" width="1200" height="562" loading="lazy">
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="pennellata pennellata--basso" viewBox="380 0 340 90" preserveAspectRatio="none" aria-hidden="true">
               <use href="#pennellata-c" xlink:href="#pennellata-c"/>
             </svg>
@@ -414,7 +429,11 @@
             <span class="occhiello">02</span>
             <h3>Preparazione atletica calcio</h3>
             <p>Attività di base, pre-agonistica, agonistica. Il lavoro fisico che durante la settimana il campo non ha tempo di fare.</p>
-            <a href="calcio.html" class="bottone--vuoto">Scopri</a>
+            <div class="servizio-card__tasti">
+              <a href="calcio.html#attivita-di-base" class="bottone--vuoto">Attività di base</a>
+              <a href="calcio.html#pre-agonistica" class="bottone--vuoto">Pre-agonistica</a>
+              <a href="calcio.html#agonistica" class="bottone--vuoto">Agonistica</a>
+            </div>
           </div>
         </article>
 
@@ -429,7 +448,11 @@
             <span class="occhiello">03</span>
             <h3>Preparazione fisica militare</h3>
             <p>Esercito, Carabinieri, Polizia. Arrivare al giorno della prova sapendo già i tuoi tempi, invece di sperare.</p>
-            <a href="militare.html" class="bottone--vuoto">Scopri</a>
+            <div class="servizio-card__tasti">
+              <a href="militare.html#esercito" class="bottone--vuoto">Esercito</a>
+              <a href="militare.html#polizia" class="bottone--vuoto">Polizia</a>
+              <a href="militare.html#carabinieri" class="bottone--vuoto">Carabinieri</a>
+            </div>
           </div>
         </article>
 
@@ -445,7 +468,7 @@
       </div>
       <div class="societa__testo" data-anima>
         <span class="occhiello">Per le società</span>
-        <h2 class="titolo-sezione">Un preparatore atletico per la vostra scuola calcio.</h2>
+        <h2 class="titolo-sezione">Un preparatore atletico per il vostro settore giovanile.</h2>
         <p>Valutazione sul campo della condizione atletica-motoria per tutte le categorie. Sedute periodiche al vostro campo, mensili o annuali. Contenuto e frequenza si decidono insieme, in base a quello che serve davvero alla squadra.</p>
         <a href="societa.html" class="bottone">Proponiamo una collaborazione</a>
       </div>
@@ -567,8 +590,8 @@
       <div class="fondo__colonna">
         <h3>Informazioni</h3>
         <ul>
-          <li><a href="chi-sono.html">Chi sono</a></li>
-          <li><a href="contatti.html">Contatti</a></li>
+          <li><a href="index.html#chi-sono">Chi sono</a></li>
+          <li><a href="index.html#contatti">Contatti</a></li>
           <li><a href="privacy.html">Privacy</a></li>
           <li><a href="cookie-policy.html">Cookie policy</a></li>
           <li><a href="note-legali.html">Note legali</a></li>
@@ -598,6 +621,8 @@
 <script src="assets/telaio.js"></script>
 <script src="assets/apertura.js"></script>
 <script src="assets/home.js"></script>
+
+<script src="assets/modulo.js"></script>
 
 </body>
 </html>

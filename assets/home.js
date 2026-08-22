@@ -224,39 +224,7 @@
   }
 
   /* ----- Modulo contatti che apre WhatsApp (11) ----- */
-  function initModuloContatti() {
-    const form = document.getElementById('form-contatti');
-    if (!form) return;
-
-    const nome = form.querySelector('[name="nome"]');
-    const cognome = form.querySelector('[name="cognome"]');
-    const categoria = form.querySelector('[name="categoria"]');
-    const telefono = form.querySelector('[name="telefono"]');
-    const messaggio = form.querySelector('[name="messaggio"]');
-
-    form.addEventListener('submit', function (evento) {
-      evento.preventDefault();
-
-      const righe = [
-        'Ciao Matteo, sono ' + (nome.value || '').trim() + ' ' + (cognome.value || '').trim() + '.',
-        'Categoria: ' + (categoria.value || 'Altro') + '.'
-      ];
-
-      if (telefono && telefono.value.trim()) {
-        righe.push('Telefono: ' + telefono.value.trim() + '.');
-      }
-
-      if (messaggio && messaggio.value.trim()) {
-        righe.push(messaggio.value.trim());
-      }
-
-      const testo = righe.join('\n');
-      window.open('https://wa.me/393453425891?text=' + encodeURIComponent(testo), '_blank');
-    });
-  }
-
   initFotoCarousel();
   initServiziCarousel();
   initTendinaPercorso();
-  initModuloContatti();
 })();

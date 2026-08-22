@@ -375,6 +375,20 @@ a.presentazione__piccolo:hover {
   align-self: flex-start;
 }
 
+.servizio-card__tasti {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.servizio-card__tasti .bottone--vuoto {
+  width: 100%;
+  height: auto;
+  padding-block: .52rem;
+  font-size: 0.8125rem;
+}
+
 /* carosello vero sotto i 900px */
 @media (max-width: 900px) {
   .servizi__track {

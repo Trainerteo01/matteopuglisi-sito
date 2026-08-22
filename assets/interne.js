@@ -1,39 +1,6 @@
 (function () {
   'use strict';
 
-  /* ----- Modulo contatti che apre WhatsApp (11) ----- */
-  function initModuloContatti() {
-    const form = document.getElementById('form-contatti');
-    if (!form) return;
-
-    const nome = form.querySelector('[name="nome"]');
-    const cognome = form.querySelector('[name="cognome"]');
-    const categoria = form.querySelector('[name="categoria"]');
-    const telefono = form.querySelector('[name="telefono"]');
-    const messaggio = form.querySelector('[name="messaggio"]');
-
-    form.addEventListener('submit', function (evento) {
-      evento.preventDefault();
-
-      const righe = [
-        'Ciao Matteo, sono ' + (nome.value || '').trim() + ' ' + (cognome.value || '').trim() + '.',
-        'Categoria: ' + (categoria.value || 'Altro') + '.'
-      ];
-
-      if (telefono && telefono.value.trim()) {
-        righe.push('Telefono: ' + telefono.value.trim() + '.');
-      }
-
-      if (messaggio && messaggio.value.trim()) {
-        righe.push(messaggio.value.trim());
-      }
-
-      const testo = righe.join('\n');
-      window.open('https://wa.me/393453425891?text=' + encodeURIComponent(testo), '_blank');
-    });
-  }
-
-  /* ----- Categoria gia scelta da URL (?categoria=...) ----- */
   function initCategoriaDaURL() {
     const select = document.getElementById('categoria');
     if (!select) return;
@@ -181,7 +148,45 @@
     });
   }
 
-  initModuloContatti();
+
+  /* ----- La barretta dei passaggi segue la sezione in cui ci si trova -----
+     Su calcio.html e militare.html la pagina e' lunga e i tasti della pagina iniziale ci
+     saltano dentro: senza un riferimento che si muove, uno non sa piu' dove sta. La voce
+     della sezione visibile si accende in bordeaux. */
+  function initBarrettaPassaggi() {
+    const barretta = document.querySelector('.calcio-nav, .militare-nav');
+    if (!barretta) return;
+
+    const voci = Array.from(barretta.querySelectorAll('a[href^="#"]'));
+    if (!voci.length) return;
+
+    const sezioni = voci
+      .map(function (v) { return document.getElementById(v.getAttribute('href').slice(1)); })
+      .filter(Boolean);
+    if (!sezioni.length) return;
+
+    let corrente = null;
+
+    function accendi(id) {
+      if (id === corrente) return; // si scrive nel DOM solo quando cambia davvero
+      corrente = id;
+      voci.forEach(function (v) {
+        v.classList.toggle('attivo', v.getAttribute('href') === '#' + id);
+      });
+    }
+
+    const osservatore = new IntersectionObserver(function (entries) {
+      // fra le sezioni visibili vince quella piu' in alto nello schermo
+      const viste = entries
+        .filter(function (e) { return e.isIntersecting; })
+        .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      if (viste.length) { accendi(viste[0].target.id); }
+    }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+
+    sezioni.forEach(function (s) { osservatore.observe(s); });
+  }
+
+  initBarrettaPassaggi();
   initCategoriaDaURL();
   initFilmatoColonna();
 })();
