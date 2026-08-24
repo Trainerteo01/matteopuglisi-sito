@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/((?!lavori-in-corso|assets/).*)",
+      "destination": "/lavori-in-corso.html",
+      "permanent": false
+    }
+  ]
+}
