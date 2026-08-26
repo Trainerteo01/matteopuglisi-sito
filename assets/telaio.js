@@ -10,6 +10,19 @@
 
   let menuAperto = false;
 
+  // Il movimento in JavaScript c'e' solo se motion.js e' arrivato davvero. Se manca,
+  // tutto quello che segue si tira indietro e restano le transizioni CSS di prima.
+  const conMotion = !!(window.Mov && window.Mov.attivo);
+  const vociMenu = pannello ? Array.from(pannello.querySelectorAll('.menu-voce__link')) : [];
+
+  // Motion deve sapere da dove parte, altrimenti alla prima apertura legge una matrice di
+  // trasformazione dal CSS e puo' interpretarla come zero, facendo comparire il pannello
+  // gia' aperto per un fotogramma. Glielo si dice una volta sola, all'avvio.
+  if (conMotion && pannello && velo) {
+    window.M.animate(pannello, { x: '-100%' }, { duration: 0 });
+    window.M.animate(velo, { opacity: 0 }, { duration: 0 });
+  }
+
   function larghezzaBarraScorrimento() {
     return window.innerWidth - document.documentElement.clientWidth;
   }
@@ -37,6 +50,22 @@
     velo.classList.add('menu-velo--aperto');
     pulsanteMenu.setAttribute('aria-expanded', 'true');
 
+    // Il pannello lo muove una molla, e le si passa solo il punto d'arrivo: cosi' se si
+    // preme due volte di fila riparte da dove si trova adesso, con la velocita' che ha
+    // adesso, invece di saltare all'inizio. E' la differenza fra un pannello vivo e uno
+    // che va a scatti.
+    if (conMotion) {
+      window.Mov.anima(pannello, { x: '0%' }, window.Mov.molle.pannello);
+      window.Mov.anima(velo, { opacity: 1 }, window.Mov.molle.velo);
+      // Le voci entrano una dopo l'altra, non tutte insieme: da' la sensazione che il
+      // pannello si stia componendo invece di apparire gia' fatto.
+      if (vociMenu.length) {
+        window.Mov.anima(vociMenu, { opacity: [0, 1], y: [14, 0] },
+          Object.assign({ delay: window.M.stagger(0.035, { startDelay: 0.08 }) },
+                        window.Mov.molle.rivelazione));
+      }
+    }
+
     const focusabili = elementiFocusabili(pannello);
     const primoVoce = pannello.querySelector('.menu-voce__link');
     if (primoVoce) {
@@ -53,13 +82,29 @@
     velo.classList.remove('menu-velo--aperto');
     pulsanteMenu.setAttribute('aria-expanded', 'false');
 
-    setTimeout(function () {
+    // Lo spazio della barra di scorrimento si restituisce quando il pannello e' davvero
+    // uscito, non a tempo scaduto: con una molla la durata non e' un numero fisso, e
+    // restituirlo troppo presto fa saltare la pagina di qualche pixel sotto il pannello
+    // ancora visibile.
+    function ripristina() {
       document.body.style.overflow = '';
       document.body.style.paddingRight = '';
       if (barra) {
         barra.style.paddingRight = '';
       }
-    }, 300);
+    }
+
+    if (conMotion) {
+      window.Mov.anima(velo, { opacity: 0 }, window.Mov.molle.velo);
+      const uscita = window.Mov.anima(pannello, { x: '-100%' }, window.Mov.molle.pannello);
+      if (uscita && typeof uscita.then === 'function') {
+        uscita.then(ripristina, ripristina);
+      } else {
+        setTimeout(ripristina, 300);
+      }
+    } else {
+      setTimeout(ripristina, 300);
+    }
 
     pulsanteMenu.focus();
   }
@@ -115,7 +160,30 @@
     }
   });
 
-  // Fisarmonica delle sottovoci
+  /* Fisarmonica delle sottovoci.
+   * Prima era max-height: un tetto inventato piu' alto del contenuto, che a tempo fisso
+   * scorre tutto, per cui la tendina parte piano e finisce di colpo quando il contenuto
+   * e' gia' tutto fuori. Adesso si anima l'altezza vera, misurata. */
+  function apriTendina(el) {
+    if (!conMotion) { el.style.maxHeight = el.scrollHeight + 'px'; return; }
+    const a = window.Mov.anima(el, { height: 'auto' }, window.Mov.molle.tendina);
+    // Arrivati in fondo si lascia 'auto': se poi il contenuto cambia — un carattere che
+    // arriva tardi, il telefono che ruota — la tendina si adatta invece di restare
+    // tagliata all'altezza di un momento fa.
+    if (a && typeof a.then === 'function') {
+      a.then(function () { el.style.height = 'auto'; }, function () {});
+    } else {
+      el.style.height = 'auto';
+    }
+  }
+
+  function chiudiTendina(el) {
+    if (!conMotion) { el.style.maxHeight = '0'; return; }
+    // Da 'auto' non si scende: prima si fissa l'altezza vera in pixel, poi si va a zero.
+    el.style.height = el.scrollHeight + 'px';
+    window.Mov.anima(el, { height: 0 }, window.Mov.molle.tendina);
+  }
+
   const pulsantiFisarmonica = document.querySelectorAll('.menu-voce__apri');
   pulsantiFisarmonica.forEach(function (pulsante) {
     pulsante.addEventListener('click', function () {
@@ -127,10 +195,10 @@
 
       if (espanso) {
         pulsante.setAttribute('aria-expanded', 'false');
-        sottovoci.style.maxHeight = '0';
+        chiudiTendina(sottovoci);
       } else {
         pulsante.setAttribute('aria-expanded', 'true');
-        sottovoci.style.maxHeight = sottovoci.scrollHeight + 'px';
+        apriTendina(sottovoci);
       }
     });
   });
@@ -166,10 +234,44 @@
   }
 
   // Animazioni al caricamento
+  const movimentoRidotto = matchMedia('(prefers-reduced-motion: reduce)');
+  const passoRitardo = 70;
+  const massimoPassi = 4;
+
   const osservatoreAnimazioni = new IntersectionObserver(
     function (entries, osservatore) {
+      // Il conteggio riparte da zero a ogni giro dell'osservatore, non e' un contatore
+      // globale: si scaglionano gli elementi che entrano nello stesso istante, non quelli
+      // che arrivano in giri diversi.
+      let passo = 0;
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
+          // Il ritardo e' limitato a 4 passi (280ms): con una lista lunga, far aspettare
+          // un secondo perche' compaia l'ultimo elemento sarebbe peggio del difetto di
+          // prima, cioe' tutto insieme.
+          if (!movimentoRidotto.matches) {
+            const ritardo = Math.min(passo, massimoPassi) * passoRitardo;
+            if (ritardo > 0) {
+              const bersaglio = entry.target;
+              bersaglio.style.transitionDelay = ritardo + 'ms';
+              // Finita la transizione il ritardo si toglie, cosi' non resta appiccicato
+              // allo stile in linea.
+              // Il controllo su evento.target non e' pignoleria: transitionend risale dai
+              // figli, e dentro una .fascia-foto la pennellata dura 900ms contro i 700 del
+              // padre. Senza controllo, l'evento del figlio cancellerebbe il ritardo del
+              // padre mentre il padre sta ancora aspettando il suo turno, e la fascia
+              // scatterebbe di colpo: esattamente il difetto che lo scaglionamento serve
+              // a togliere.
+              bersaglio.addEventListener('transitionend', function toglieRitardo(evento) {
+                if (evento.target !== bersaglio) {
+                  return;
+                }
+                bersaglio.style.transitionDelay = '';
+                bersaglio.removeEventListener('transitionend', toglieRitardo);
+              });
+            }
+          }
+          passo++;
           entry.target.classList.add('visibile');
           osservatore.unobserve(entry.target);
         }
@@ -239,5 +341,14 @@
       window.addEventListener('scroll', svegliaMetro, { passive: true });
       svegliaMetro();
     }
+  }
+
+  // Ritorno al dito e al passaggio del mouse. Su uno schermo da toccare il passaggio del
+  // mouse non esiste, e la pressione e' l'unico ritorno che il dito riceve: senza, il
+  // sito sembra morto in mano.
+  if (conMotion) {
+    window.Mov.gesti('.bottone, .bottone--vuoto', { sopra: { y: -2 }, premuto: { scale: 0.97 } });
+    window.Mov.gesti('a.presentazione__piccolo', { sopra: { y: -3 }, premuto: { scale: 0.98 } });
+    window.Mov.gesti('.servizio-card', { sopra: { y: -4 }, premuto: { scale: 0.99 } });
   }
 })();

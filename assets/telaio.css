@@ -632,3 +632,52 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .metro__strato--acceso { clip-path: none; }
 }
+
+/* ---- Movimento comandato dal JavaScript (Motion) ----
+   La classe la mette movimento.js, e solo se motion.js e' arrivato davvero. Serve a
+   spegnere le transizioni CSS sulle proprieta' che da qui in poi comanda Motion: se
+   restassero accese, la transizione inseguirebbe i valori che Motion scrive fotogramma
+   per fotogramma e il movimento uscirebbe doppio e impastato.
+   Senza JavaScript la classe non c'e' e il sito si muove esattamente come prima: le
+   regole qui sotto sono un'aggiunta, non una sostituzione. */
+.con-movimento .menu-pannello,
+.con-movimento .menu-velo {
+  transition: none;
+}
+
+/* La tendina passa da max-height (che deve indovinare un tetto) all'altezza vera,
+   misurata e animata da Motion. */
+.con-movimento .menu-voce__sottovoci {
+  transition: none;
+  max-height: none;
+  height: 0;
+}
+
+/* Il ritorno al dito e al passaggio del mouse lo comanda Motion, con i gesti attaccati
+   in telaio.js. Qui il CSS si toglie di mezzo sulle stesse superfici: se la transizione
+   restasse accesa su transform, inseguirebbe i valori che Motion scrive a ogni
+   fotogramma e il movimento uscirebbe doppio. Per ognuno si lascia accesa solo la parte
+   di transizione che Motion non tocca (colori, bordi, ombre) e si azzera il transform
+   dell':hover, perche' quello d'ora in poi lo mette Motion. */
+.con-movimento .bottone {
+  transition-property: background-color;
+}
+
+.con-movimento .bottone--vuoto {
+  transition-property: border-color, color;
+}
+
+.con-movimento a.presentazione__piccolo {
+  transition-property: box-shadow;
+}
+
+.con-movimento .servizio-card {
+  transition-property: none;
+}
+
+.con-movimento .bottone:hover,
+.con-movimento .bottone--vuoto:hover,
+.con-movimento a.presentazione__piccolo:hover,
+.con-movimento .servizio-card:hover {
+  transform: none;
+}

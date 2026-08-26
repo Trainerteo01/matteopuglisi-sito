@@ -36,6 +36,14 @@
   let titoloVivo = 0;
   let spostamento = null;
   let gira = false;
+  let bersaglio = 0;
+  // null vuol dire non ancora inizializzato: al primo calcolo prende l'avanzamento
+  // corrente, non zero. Chi arriva con la pagina gia' scorsa, o ricarica a meta',
+  // non deve vedere il marchio rimontarsi da capo.
+  let inseguito = null;
+  // Istante dell'ultimo fotogramma, per misurare quanto tempo e' passato: serve a
+  // rendere lo smorzamento uguale a 60 e a 120 fotogrammi al secondo.
+  let ultimoFotogramma = 0;
 
   function misura() {
     const r = sezione.getBoundingClientRect();
@@ -44,8 +52,12 @@
   }
 
   function passo() {
-    gira = false;
-    const p = Math.min(1, Math.max(0, (window.scrollY - cima) / corsa));
+    bersaglio = Math.min(1, Math.max(0, (window.scrollY - cima) / corsa));
+    if (inseguito === null) { inseguito = bersaglio; }
+  }
+
+  function disegna() {
+    const p = inseguito;
 
     // I pezzi seguono lo scorrimento nei due sensi: si scende e il marchio si monta,
     // si risale e si smonta. Le frasi il ritorno lo facevano gia': se il marchio non lo
@@ -88,14 +100,47 @@
     if (scorri) { scorri.classList.toggle('via', p > 0.04); }
   }
 
+  // Perche' si insegue invece di agganciare: gli eventi di scorrimento arrivano a
+  // raffiche, e agganciare la scena a ognuno fa vedere tutta la scalinata dei
+  // fotogrammi, che e' il movimento robotico. Avvicinarsi di una frazione a ogni
+  // fotogramma fonde i gradini in una planata.
+  function giro() {
+    passo();
+
+    // Sotto la soglia ci siamo: un ultimo giro agganciati al bersaglio, disegna e
+    // ferma. Il ciclo esiste solo finche' serve: un ciclo che gira sempre scalda il
+    // telefono per niente.
+    if (Math.abs(bersaglio - inseguito) <= 0.0005) {
+      inseguito = bersaglio;
+      disegna();
+      gira = false;
+      // Il ciclo si ferma: si azzera anche la misura del tempo, altrimenti al risveglio
+      // il primo intervallo varrebbe tutta la pausa e il valore salterebbe sul bersaglio.
+      ultimoFotogramma = 0;
+      return;
+    }
+
+    if (window.Mov) {
+      const adesso = performance.now();
+      const trascorso = ultimoFotogramma ? adesso - ultimoFotogramma : 0;
+      ultimoFotogramma = adesso;
+      inseguito = window.Mov.insegui(inseguito, bersaglio, 0.14, trascorso);
+    } else {
+      // movimento.js non caricato: niente smorzamento, la pagina resta quella di prima.
+      inseguito = bersaglio;
+    }
+    disegna();
+    requestAnimationFrame(function () { giro(); });
+  }
+
   function sveglia() {
     if (!gira) {
       gira = true;
       // La freccia non e' un vezzo: requestAnimationFrame passa al richiamo il tempo
-      // trascorso. Se un domani passo() prendesse un parametro, si ritroverebbe 2630 al
-      // posto dell'avanzamento e la parallasse sparerebbe il marchio a centomila pixel
-      // dallo schermo. E' gia' successo il 2026-08-20.
-      requestAnimationFrame(function () { passo(); });
+      // trascorso. Se la funzione del ciclo prendesse un parametro, si ritroverebbe
+      // 2630 al posto dell'avanzamento e la parallasse sparerebbe il marchio a
+      // centomila pixel dallo schermo. E' gia' successo il 2026-08-20.
+      requestAnimationFrame(function () { giro(); });
     }
   }
 
