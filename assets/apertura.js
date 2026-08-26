@@ -31,6 +31,11 @@
   const TAPPE = 15; // quanti pezzi, quindi quante soglie
   let cima = 0;
   let corsa = 1; // geometria della sezione, letta solo al ridimensionamento
+  // Quanti pixel sale il marchio con la parallasse. Si legge dalla variabile CSS
+  // --parallasse-marchio dentro misura(), una volta sola, non a ogni fotogramma:
+  // cosi' il telefono puo' avere un valore piu' piccolo senza toccare questo file.
+  // 46 e' il ripiego se la variabile manca o non e' un numero.
+  let parallasse = 46;
   let acceso = -1;
   let battutaViva = 0;
   let titoloVivo = 0;
@@ -49,6 +54,13 @@
     const r = sezione.getBoundingClientRect();
     cima = r.top + window.scrollY;
     corsa = Math.max(1, sezione.offsetHeight - window.innerHeight);
+    // La parallasse sta in una variabile CSS perche' sul telefono va abbassata:
+    // misura() gira anche al ridimensionamento, quindi ruotando il telefono il
+    // valore si aggiorna da solo.
+    const letta = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue('--parallasse-marchio')
+    );
+    parallasse = Number.isNaN(letta) ? 46 : letta;
   }
 
   function passo() {
@@ -91,7 +103,7 @@
     }
 
     // parallasse: il marchio sale piu' piano del testo
-    const y = Math.round(-p * 46);
+    const y = Math.round(-p * parallasse);
     if (y !== spostamento) {
       marchio.style.transform = 'translate3d(0,' + y + 'px,0)';
       spostamento = y;

@@ -18,6 +18,13 @@
   /* Dietro a tutto e insensibile al dito: e' decorazione, non un elemento della pagina. */
   z-index: 0;
   pointer-events: none;
+  /* La fascia grigia di PARLIAMONE ha il fondo pieno: senza dissolvenza taglierebbe il
+     marchio di netto. La classe "via" la mette il copione della pagina. */
+  transition: opacity 700ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.csi-sfondo.via {
+  opacity: 0;
 }
 
 .csi-sfondo__marchio {

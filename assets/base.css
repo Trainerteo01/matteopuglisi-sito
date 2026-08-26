@@ -132,6 +132,10 @@
   --bordeaux-scuro:    #7A1719;
   --altezza-barra:     72px;   /* la barra in alto e' fissa: chi ci sta sotto deve saperlo */
 
+  /* Quanti pixel sale il marchio dell'apertura mentre si scorre (parallasse).
+     La legge apertura.js; sul telefono si abbassa, vedi apertura.css. */
+  --parallasse-marchio: 46px;
+
   --bordeaux-velo:     #F7EBEB;
 
   --ombra: 0 2px 40px rgba(28, 28, 28, .06);

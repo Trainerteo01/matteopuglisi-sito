@@ -170,8 +170,13 @@
   object-fit: cover;
 }
 
-/* Gia' pronto per quando il curriculum arriva e il riquadro diventa un collegamento. */
-aa@media (max-width: 900px) {
+/* Sotto i 900px la presentazione si impila: prima il testo, poi la foto.
+   Il 2026-08-26 questa media query e' rimasta rotta per qualche ora, con due lettere
+   spurie davanti (`aa@media`) lasciate da una pulizia fatta con una espressione
+   regolare: bastava quello per far ignorare l'intero blocco dal browser, e sul telefono
+   la presentazione restava a due colonne strizzate. Le regole CSS non si tolgono a
+   colpi di regex senza poi rileggere il file. */
+@media (max-width: 900px) {
   .presentazione__griglia {
     grid-template-columns: 1fr;
     text-align: center;
@@ -188,14 +193,7 @@ aa@media (max-width: 900px) {
   .presentazione__testo p {
     margin-inline: auto;
   }
-
-  }
-
-@media (max-width: 420px) {
-  }
-
-@media (prefers-reduced-motion: reduce) {
-  }
+}
 
 /* ----- Carosello dei tre servizi (7.3) ----- */
 .servizi__track {

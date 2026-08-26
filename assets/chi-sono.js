@@ -32,6 +32,12 @@
   const blocchi = Array.from(document.querySelectorAll('.csi-blocco[data-tappa]'));
   if (!gruppi.length || !blocchi.length) { return; }
 
+  const sfondo = document.querySelector('.csi-sfondo');
+  // L'ultima fascia, quella grigia di PARLIAMONE: la corsa dell'animazione finisce dove
+  // comincia lei, e il marchio si spegne quando sta per coprirlo. Se manca, si torna alla
+  // corsa di tutta la pagina.
+  const fine = document.querySelector('.csi-fine');
+
   // Con movimento ridotto il marchio e' gia' intero dal CSS, qualunque classe abbia:
   // qui non c'e' niente da fare e mettersi ad ascoltare lo scorrimento sarebbe lavoro
   // sprecato.
@@ -57,7 +63,13 @@
   }
 
   function livelloAdesso() {
-    const corsa = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    // La corsa finisce quando la cima di .csi-fine arriva al fondo dello schermo: la
+    // quarta tappa si chiude prima che il fondo opaco della fascia tagli il marchio.
+    // La posizione si ricalcola qui, non si memorizza: l'altezza della pagina cambia
+    // quando arrivano i caratteri.
+    const corsa = fine
+      ? Math.max(1, fine.getBoundingClientRect().top + window.scrollY - window.innerHeight)
+      : Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     const p = Math.min(1, Math.max(0, window.scrollY / corsa));
     let n = 0;
     for (let i = 0; i < QUOTE.length; i++) {
@@ -75,6 +87,11 @@
     if (n !== livello) {
       livello = n;
       applica(n);
+    }
+    // Quando la cima della fascia grigia sale sopra il fondo dello schermo il marchio si
+    // spegne in dissolvenza, invece di essere tranciato dal suo bordo; risalendo torna.
+    if (fine && sfondo) {
+      sfondo.classList.toggle('via', fine.getBoundingClientRect().top < window.innerHeight);
     }
   }
 

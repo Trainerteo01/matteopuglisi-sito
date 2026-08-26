@@ -12,11 +12,19 @@
   }
 }
 
+/* Sul telefono (misurato a 390x844) alla fine dello scorrimento dell'apertura il
+   marchio e la scritta sotto si sovrappongono di 37 pixel: la parallasse alza il
+   marchio di 46 pixel e lo spazio fra i due non basta. La parallasse scende a
+   18 pixel qui, e lo stacco sopra il titolo restituisce il resto. */
 .apertura__scena {
   position: sticky;
   top: 0;
   height: 100vh;
-  height: 100svh;
+  /* dvh e non svh: svh e' l'altezza dello schermo CON la barra dell'indirizzo aperta.
+     Sul telefono, appena si scorre, quella barra si ritrae e lo schermo diventa piu'
+     alto: una scena alta 100svh smette di coprirlo, e da sotto spunta la sezione
+     seguente mentre il marchio e' ancora li'. Il pannello del menu usa gia' dvh. */
+  height: 100dvh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
