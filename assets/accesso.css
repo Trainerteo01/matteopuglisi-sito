@@ -1,0 +1,272 @@
+/* =========================================================
+   Area riservata: accesso, registrazione, recupero password
+   ========================================================= */
+
+.accesso {
+  padding-top: calc(var(--altezza-barra) + 56px);
+  padding-bottom: 96px;
+  max-width: 480px;
+}
+
+.accesso__pannello[hidden] {
+  display: none;
+}
+
+.accesso__pannello .occhiello {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.accesso h1 {
+  margin-bottom: 12px;
+}
+
+/* La colonna e' larga 480px: il titolo grande del sito, che a 1280px arriva a
+   90px, ci trabocca fuori. Qui va tenuto piu' corto. La specificita' 0,2,0
+   basta a battere .titolo-grande di base.css. */
+.accesso .titolo-grande {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+}
+
+.accesso__intro {
+  color: var(--grigio-testo);
+  margin-bottom: 32px;
+}
+
+/* ----- I due sportelli: entra / crea un account ----- */
+
+.accesso__sportelli {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 28px;
+}
+
+.accesso__sportello {
+  border: 0;
+  background: transparent;
+  border-radius: 7px;
+  padding: 11px 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grigio-testo);
+  cursor: pointer;
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.accesso__sportello[aria-selected="true"] {
+  background: var(--bordeaux-velo);
+  color: var(--bordeaux);
+}
+
+.accesso__sportello:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+/* ----- Il tasto di Google ----- */
+
+.accesso__google {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+  background: var(--bianco);
+  color: var(--grafite);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 220ms ease;
+}
+
+.accesso__google:hover {
+  border-color: var(--grigio-logo);
+}
+
+.accesso__google:focus-visible {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+.accesso__google svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+
+/* ----- La riga "oppure" ----- */
+
+.accesso__oppure {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 26px 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grigio-logo);
+}
+
+.accesso__oppure::before,
+.accesso__oppure::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--bordo);
+}
+
+/* ----- I campi ----- */
+
+.accesso__campi {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.accesso__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.accesso__campo label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--grigio-testo);
+}
+
+.accesso__campo input {
+  width: 100%;
+  height: 50px;
+  padding-inline: 16px;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+  background: var(--bianco);
+  color: var(--grafite);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 220ms ease;
+}
+
+.accesso__campo input:focus {
+  border-color: var(--bordeaux);
+}
+
+.accesso__aiuto {
+  font-size: 0.875rem;
+  color: var(--grigio-logo);
+}
+
+.accesso .bottone {
+  width: 100%;
+  justify-content: center;
+}
+
+.accesso .bottone[disabled] {
+  opacity: .55;
+  cursor: default;
+}
+
+/* ----- Il collegamento "password dimenticata" ----- */
+
+.accesso__minore {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9375rem;
+}
+
+.accesso__minore button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  color: var(--bordeaux);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ----- I messaggi ----- */
+
+.accesso__messaggio {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.accesso__messaggio[hidden] {
+  display: none;
+}
+
+.accesso__messaggio--errore {
+  background: var(--bordeaux-velo);
+  color: var(--bordeaux-scuro);
+}
+
+.accesso__messaggio--fatto {
+  background: var(--grigio-chiaro);
+  color: var(--grafite);
+}
+
+/* ----- Quando si e' dentro ----- */
+
+.accesso__chi {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--bordo);
+  border-radius: 12px;
+  margin-bottom: 28px;
+}
+
+.accesso__iniziale {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--bordeaux-velo);
+  color: var(--bordeaux);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.accesso__indirizzo {
+  font-size: 0.9375rem;
+  color: var(--grigio-testo);
+  word-break: break-all;
+}
+
+.accesso__vuoto {
+  padding: 28px 20px;
+  border: 1px dashed var(--bordo);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--grigio-testo);
+  font-size: 0.9375rem;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 520px) {
+  .accesso {
+    padding-top: calc(var(--altezza-barra) + 32px);
+  }
+}

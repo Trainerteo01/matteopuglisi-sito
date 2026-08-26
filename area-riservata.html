@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/telaio.css">
   <link rel="stylesheet" href="assets/interne.css">
+  <link rel="stylesheet" href="assets/accesso.css">
 </head>
 <body>
 
@@ -253,12 +254,106 @@
 
 <main>
 
-  <section class="fascia area-riservata">
-    <div class="contenuto pagina-testo-centro" style="padding-top: 112px;">
-      <span class="occhiello">Area riservata</span>
-      <h1 class="titolo-grande">Sta arrivando.</h1>
-      <p>Qui dentro troverai i tuoi programmi, la videochiamata con me e la tua pagina personale. Ci sto lavorando.</p>
-      <a class="bottone" href="https://wa.me/393453425891">Scrivimi su WhatsApp</a>
+  <!-- BOZZA DA APPROVARE: i testi di questa pagina li ho scritti io, non stanno
+       nel design package. Da far leggere a Matteo. -->
+  <section class="fascia">
+    <div class="contenuto accesso">
+
+      <!-- In attesa. E' quello che si vede finche' in configurazione.js manca la
+           chiave, e anche per chi ha JavaScript spento. Resta il testo di prima. -->
+      <div class="accesso__pannello" id="accesso-attesa">
+        <span class="occhiello">Area riservata</span>
+        <h1 class="titolo-grande">Sta arrivando.</h1>
+        <p class="accesso__intro">Qui dentro troverai i tuoi programmi, la videochiamata con me e la tua pagina personale. Ci sto lavorando.</p>
+        <a class="bottone" href="https://wa.me/393453425891">Scrivimi su WhatsApp</a>
+      </div>
+
+      <!-- Entra oppure crea un account -->
+      <div class="accesso__pannello" id="accesso-modulo" hidden>
+        <span class="occhiello">Area riservata</span>
+        <h1 class="titolo-grande" id="accesso-titolo">Bentornato.</h1>
+        <p class="accesso__intro" id="accesso-intro">Entra per vedere i tuoi programmi e prenotare la videochiamata.</p>
+
+        <div class="accesso__sportelli" role="tablist" aria-label="Entra oppure crea un account">
+          <button type="button" class="accesso__sportello" role="tab" data-modalita="entra" aria-selected="true">Entra</button>
+          <button type="button" class="accesso__sportello" role="tab" data-modalita="registrati" aria-selected="false">Crea un account</button>
+        </div>
+
+        <button type="button" class="accesso__google" id="accesso-google">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-2.7-.4-3.9H24v7.1h12.1c-.2 1.8-1.6 4.6-4.5 6.4l-.1.3 6.5 5 .5.1c4.1-3.8 6.6-9.4 6.6-15z"/>
+            <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-6.9-5.4c-1.8 1.3-4.3 2.2-7.6 2.2-5.8 0-10.7-3.8-12.5-9.1l-.3.02-6.8 5.2-.1.3C7.9 41 15.4 46 24 46z"/>
+            <path fill="#FBBC05" d="M11.5 28.4c-.5-1.4-.7-2.9-.7-4.4s.3-3 .7-4.4l-.01-.3-6.9-5.3-.2.1C2.9 16.9 2 20.4 2 24s.9 7.1 2.4 10l7.1-5.6z"/>
+            <path fill="#EB4335" d="M24 10.5c4.1 0 6.9 1.8 8.5 3.3l6.2-6C34.9 4.3 29.9 2 24 2 15.4 2 7.9 7 4.4 14l7.1 5.6c1.8-5.3 6.7-9.1 12.5-9.1z"/>
+          </svg>
+          Continua con Google
+        </button>
+
+        <p class="accesso__oppure">oppure</p>
+
+        <form id="accesso-form" novalidate>
+          <div class="accesso__campi">
+            <div class="accesso__campo">
+              <label for="accesso-email">Indirizzo email</label>
+              <input type="email" id="accesso-email" name="email" autocomplete="email" required>
+            </div>
+            <div class="accesso__campo" id="accesso-riga-password">
+              <label for="accesso-password">Password</label>
+              <input type="password" id="accesso-password" name="password" autocomplete="current-password" required>
+              <span class="accesso__aiuto" id="accesso-aiuto-password"></span>
+            </div>
+            <button type="submit" class="bottone" id="accesso-invia">Entra</button>
+          </div>
+        </form>
+
+        <p class="accesso__minore">
+          <button type="button" id="accesso-dimenticata">Ho dimenticato la password</button>
+        </p>
+
+        <p class="accesso__messaggio" id="accesso-messaggio" role="status" aria-live="polite" hidden></p>
+      </div>
+
+      <!-- Dentro -->
+      <div class="accesso__pannello" id="accesso-dentro" hidden>
+        <span class="occhiello">Area riservata</span>
+        <h1 class="titolo-grande">Ci sei.</h1>
+
+        <div class="accesso__chi">
+          <span class="accesso__iniziale" id="dentro-iniziale" aria-hidden="true"></span>
+          <span class="accesso__indirizzo" id="dentro-indirizzo"></span>
+        </div>
+
+        <!-- MANCA DA MATTEO: i PDF e i loro prezzi. Finche' non ci sono, qui
+             resta il riquadro vuoto: niente prodotti finti. -->
+        <p class="accesso__vuoto">Non hai ancora nessun programma. Quando ne prendi uno lo trovi qui, sempre scaricabile.</p>
+
+        <p><a class="bottone" href="https://cal.com/matteopuglisi/prima-videochiamata" target="_blank" rel="noopener">Prenota la videochiamata</a></p>
+
+        <p class="accesso__minore">
+          <button type="button" id="accesso-esci">Esci</button>
+        </p>
+      </div>
+
+      <!-- La password nuova, dopo il collegamento arrivato per email -->
+      <div class="accesso__pannello" id="accesso-recupero" hidden>
+        <span class="occhiello">Area riservata</span>
+        <h1 class="titolo-grande">Scegli una password nuova.</h1>
+        <p class="accesso__intro">Da adesso entrerai con questa.</p>
+
+        <form id="recupero-form" novalidate>
+          <div class="accesso__campi">
+            <div class="accesso__campo">
+              <label for="recupero-password">Password nuova</label>
+              <input type="password" id="recupero-password" autocomplete="new-password" required>
+              <span class="accesso__aiuto">Almeno 8 caratteri.</span>
+            </div>
+            <button type="submit" class="bottone" id="recupero-invia">Salva la password</button>
+          </div>
+        </form>
+
+        <p class="accesso__messaggio" id="recupero-messaggio" role="status" aria-live="polite" hidden></p>
+      </div>
+
     </div>
   </section>
 
@@ -359,6 +454,9 @@
 <script src="assets/motion.js"></script>
 <script src="assets/movimento.js"></script>
 <script src="assets/telaio.js"></script>
+<script src="assets/configurazione.js"></script>
+<script src="assets/supabase.js"></script>
+<script src="assets/accesso.js"></script>
 
 </body>
 </html>
