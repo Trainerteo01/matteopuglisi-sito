@@ -29,19 +29,26 @@
 /* Lo stato di riposo non e' invisibile: un'ombra del marchio si vede da subito, se no la
    pagina parte vuota e il primo gruppo che si accende sembra un errore di caricamento. */
 .csi-sfondo__gruppo {
-  opacity: .03;
+  opacity: .05;
   transition: opacity 1100ms cubic-bezier(.16, 1, .3, 1);
 }
 
-/* Provato a .2 il 2026-08-26 e sbagliato: la mano bordeaux diventava una macchia rosa
-   dietro le righe e la lettura ne soffriva. Uno sfondo che si nota e' uno sfondo di
-   troppo. A .085 il marchio si sente e non si legge sopra. */
+/* Due errori di seguito su questo numero, e vale la pena raccontarli.
+   Prima .2: la mano bordeaux diventava una macchia rosa dietro le righe.
+   Poi .085, ed era troppo poco: da .03 a .085 il passaggio non si vedeva, e Matteo ha
+   detto giustamente che il marchio non si animava per sezione. Il meccanismo funzionava,
+   era il salto a essere invisibile.
+   La colpa non era di tutto il marchio ma del solo bordeaux, che e' l'unico colore
+   saturo: adesso il salto e' bello largo (da .05 a .2) e la mano viene tenuta indietro
+   per conto suo con fill-opacity. */
 .csi-sfondo__gruppo.acceso {
-  opacity: .085;
+  opacity: .2;
 }
 
-/* Gli stessi colori del marchio vero, solo tenuti bassi dall'opacita' del gruppo. */
-.csi-pezzo--mano { fill: var(--bordeaux); }
+/* Gli stessi colori del marchio vero, tenuti bassi dall'opacita' del gruppo.
+   Il bordeaux ha bisogno di una briglia sua: a parita' di opacita' pesa il doppio dei
+   grigi e vira al rosa. */
+.csi-pezzo--mano { fill: var(--bordeaux); fill-opacity: .45; }
 .csi-pezzo--vertebra { fill: var(--grigio-logo); }
 .csi-pezzo--manubrio { fill: var(--grafite); }
 .csi-pezzo--arco { fill: #D8D8D8; }
@@ -176,7 +183,7 @@ main .csi-intestazione {
   /* Sul telefono il marchio fisso dietro a una colonna stretta diventa rumore: la riga
      di testo ci passa sopra tutta. Si tiene, ma piu' indietro. */
   .csi-sfondo__gruppo.acceso {
-    opacity: .06;
+    opacity: .13;
   }
 
   .csi-sfondo__marchio {
@@ -188,6 +195,6 @@ main .csi-intestazione {
   /* Niente accensione progressiva: il marchio e' subito quello finale. */
   .csi-sfondo__gruppo {
     transition: none;
-    opacity: .085;
+    opacity: .2;
   }
 }
