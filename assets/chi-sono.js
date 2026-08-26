@@ -1,12 +1,19 @@
-/* Pagina "Chi sono io": il marchio dello sfondo si accende una parte alla volta.
+/* Pagina "Chi sono io": il marchio dello sfondo si compone mentre si legge, e si smonta
+ * risalendo.
  *
- * Ogni blocco di testo porta un data-tappa. Quando il blocco arriva in mezzo allo schermo,
- * cioe' quando lo si sta davvero leggendo, si accende il gruppo di pezzi con lo stesso
- * numero, e restano accesi quelli di prima: alla fine della lettura il marchio e' intero.
+ * Ogni blocco di testo porta un data-tappa. Il marchio mostra tanti gruppi di pezzi
+ * quanti sono i blocchi gia' raggiunti: si scende e si accendono, si risale e si
+ * spengono, come fa il marchio della pagina iniziale. Chiesto da Matteo il 2026-08-26.
  *
- * Perche' non e' agganciato allo scorrimento come l'apertura della home: li' il marchio e'
- * il protagonista e deve seguire il dito. Qui e' uno sfondo, e legarlo al testo invece che
- * ai pixel fa si' che chi legge piano e chi scorre veloce vedano la stessa cosa.
+ * Prima era un IntersectionObserver che accendeva e poi smetteva di guardare: andava in
+ * un senso solo, ed e' il motivo per cui risalendo non succedeva niente. Adesso lo stato
+ * si **ricalcola** a ogni fotogramma utile dalla posizione vera dei blocchi, quindi i due
+ * sensi vengono gratis e non c'e' nessuna memoria da tenere allineata.
+ *
+ * Cosa NON si fa, ed e' una scelta gia' presa per l'apertura della home il 2026-08-22:
+ * i pezzi non scivolano e non si ingrandiscono, entrano fermi in dissolvenza. Il contorno
+ * del marchio e' li' dal primo istante, e contro un contorno fisso qualsiasi spostamento
+ * si legge come disallineamento invece che come movimento.
  */
 (function () {
   'use strict';
@@ -15,41 +22,60 @@
   const blocchi = Array.from(document.querySelectorAll('.csi-blocco[data-tappa]'));
   if (!gruppi.length || !blocchi.length) { return; }
 
-  function accendiFinoA(n) {
+  // Con movimento ridotto il marchio e' gia' intero dal CSS, qualunque classe abbia:
+  // qui non c'e' niente da fare e mettersi ad ascoltare lo scorrimento sarebbe lavoro
+  // sprecato.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+
+  let livello = -1;
+  let gira = false;
+
+  function applica(n) {
     gruppi.forEach(function (g) {
-      if (parseInt(g.dataset.tappa, 10) <= n) {
-        g.classList.add('acceso');
-      }
+      g.classList.toggle('acceso', parseInt(g.dataset.tappa, 10) <= n);
     });
   }
 
-  // Con movimento ridotto il marchio e' gia' intero dal CSS: qui non serve fare niente,
-  // e mettersi a osservare lo scorrimento sarebbe lavoro sprecato.
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
+  /* Un blocco conta come raggiunto quando la sua cima ha superato in alto il 62% dello
+   * schermo: e' il momento in cui il blocco e' entrato per davvero e lo si sta leggendo,
+   * non quando spunta appena dal bordo. La stessa soglia vale nei due sensi, quindi il
+   * punto in cui una tappa si accende scendendo e' lo stesso in cui si spegne risalendo:
+   * senza questo il marchio "ballerebbe" avanti e indietro attorno al confine. */
+  function livelloAdesso() {
+    const soglia = window.innerHeight * 0.62;
+    let n = 0;
+    blocchi.forEach(function (b) {
+      if (b.getBoundingClientRect().top < soglia) {
+        const t = parseInt(b.dataset.tappa, 10);
+        if (t > n) { n = t; }
+      }
+    });
+    return n;
   }
 
-  // La prima tappa si accende subito: la pagina non deve partire con lo sfondo spento e
-  // poi svegliarsi, sembrerebbe un caricamento in ritardo.
-  accendiFinoA(1);
+  function passo() {
+    gira = false;
+    const n = livelloAdesso();
+    if (n !== livello) {
+      livello = n;
+      applica(n);
+    }
+  }
 
-  let massima = 1;
+  function sveglia() {
+    if (!gira) {
+      gira = true;
+      // La funzione senza parametri non e' un vezzo: requestAnimationFrame passa al
+      // richiamo il tempo trascorso, e passo() non deve trovarselo fra i piedi. E' la
+      // stessa trappola gia' costata un pomeriggio in apertura.js il 2026-08-20.
+      requestAnimationFrame(function () { passo(); });
+    }
+  }
 
-  // Il margine stringe la finestra di osservazione a una fascia centrale alta un quarto
-  // di schermo: il blocco conta come "in lettura" quando ci passa dentro, non appena
-  // spunta dal bordo. Senza, su uno schermo alto si accenderebbe tutto in una volta.
-  const osservatore = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) { return; }
-      const n = parseInt(entry.target.dataset.tappa, 10);
-      if (n > massima) {
-        massima = n;
-        accendiFinoA(n);
-      }
-      // Una tappa accesa non si spegne piu': si smette di guardare quel blocco.
-      osservatore.unobserve(entry.target);
-    });
-  }, { rootMargin: '-38% 0px -38% 0px' });
+  window.addEventListener('scroll', sveglia, { passive: true });
+  window.addEventListener('resize', sveglia, { passive: true });
 
-  blocchi.forEach(function (b) { osservatore.observe(b); });
+  // Lo stato iniziale si calcola subito: chi arriva con la pagina gia' scorsa, o ricarica
+  // a meta' lettura, deve trovare il marchio al punto giusto e non da capo.
+  passo();
 })();

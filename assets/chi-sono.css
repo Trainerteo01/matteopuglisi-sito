@@ -29,8 +29,8 @@
 /* Lo stato di riposo non e' invisibile: un'ombra del marchio si vede da subito, se no la
    pagina parte vuota e il primo gruppo che si accende sembra un errore di caricamento. */
 .csi-sfondo__gruppo {
-  opacity: .05;
-  transition: opacity 1100ms cubic-bezier(.16, 1, .3, 1);
+  opacity: .04;
+  transition: opacity 900ms cubic-bezier(.16, 1, .3, 1);
 }
 
 /* Due errori di seguito su questo numero, e vale la pena raccontarli.
@@ -39,16 +39,19 @@
    detto giustamente che il marchio non si animava per sezione. Il meccanismo funzionava,
    era il salto a essere invisibile.
    La colpa non era di tutto il marchio ma del solo bordeaux, che e' l'unico colore
-   saturo: adesso il salto e' bello largo (da .05 a .2) e la mano viene tenuta indietro
-   per conto suo con fill-opacity. */
+   saturo: il salto si e' allargato e la mano viene tenuta indietro per conto suo con
+   fill-opacity.
+   Terzo giro, 2026-08-26: anche .2 andava notato con attenzione. Adesso da .04 a .3,
+   che e' sette volte e mezza, e la dissolvenza scende da 1100 a 900ms perche' con un
+   salto piu' largo un tempo lungo la fa sembrare pigra. */
 .csi-sfondo__gruppo.acceso {
-  opacity: .2;
+  opacity: .3;
 }
 
 /* Gli stessi colori del marchio vero, tenuti bassi dall'opacita' del gruppo.
    Il bordeaux ha bisogno di una briglia sua: a parita' di opacita' pesa il doppio dei
    grigi e vira al rosa. */
-.csi-pezzo--mano { fill: var(--bordeaux); fill-opacity: .45; }
+.csi-pezzo--mano { fill: var(--bordeaux); fill-opacity: .4; }
 .csi-pezzo--vertebra { fill: var(--grigio-logo); }
 .csi-pezzo--manubrio { fill: var(--grafite); }
 .csi-pezzo--arco { fill: #D8D8D8; }
@@ -183,7 +186,7 @@ main .csi-intestazione {
   /* Sul telefono il marchio fisso dietro a una colonna stretta diventa rumore: la riga
      di testo ci passa sopra tutta. Si tiene, ma piu' indietro. */
   .csi-sfondo__gruppo.acceso {
-    opacity: .13;
+    opacity: .2;
   }
 
   .csi-sfondo__marchio {
@@ -195,6 +198,6 @@ main .csi-intestazione {
   /* Niente accensione progressiva: il marchio e' subito quello finale. */
   .csi-sfondo__gruppo {
     transition: none;
-    opacity: .2;
+    opacity: .3;
   }
 }
