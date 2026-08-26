@@ -296,6 +296,35 @@
   margin-inline: auto;
 }
 
+/* Le due schede Full Body, uomo e donna, con la riga di introduzione sopra */
+.all11-schede {
+  display: grid;
+  grid-template-columns: minmax(0, 520px);
+  justify-content: center;
+  gap: clamp(20px, 3vw, 32px);
+  text-align: center;
+}
+
+.all11-schede > .occhiello,
+.all11-schede > .titolo-sezione,
+.all11-schede > .all11-schede__intro {
+  grid-column: 1 / -1;
+}
+
+.all11-schede__intro {
+  font-size: 1rem;
+  color: var(--grigio-testo);
+  margin: 0 auto;
+  /* Senza misura la riga si spezzava male in mezzo a "una per lui e una per lei". */
+  max-width: 56ch;
+}
+
+@media (min-width: 760px) {
+  .all11-schede {
+    grid-template-columns: repeat(2, minmax(0, 520px));
+  }
+}
+
 /* Scheda PDF */
 .all11-scheda-pdf {
   max-width: 520px;

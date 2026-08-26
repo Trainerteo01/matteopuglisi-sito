@@ -46,9 +46,7 @@
 .barra__pezzo--mano { fill: var(--bordeaux); }
 .barra__pezzo--grigio { fill: var(--grigio-logo); }
 .barra__pezzo--arco { fill: #D8D8D8; }
-.barra__pezzo--manubrio { fill: var(--grigio-logo); transition: fill 220ms ease; }
-
-body.menu-aperto .barra__pezzo--manubrio { fill: var(--grafite); }
+.barra__pezzo--manubrio { fill: var(--grafite); }
 
 .barra__nome {
   position: relative;
@@ -427,10 +425,14 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
   height: auto;
 }
 
+/* Ingranditi il 2026-08-26 su richiesta di Matteo: li voleva "piu' grandi e visibili".
+   La visibilita' non e' solo misura: il grigio del testo su bianco freddo li faceva
+   sparire, il grafite li tiene a galla. Quelli del pannello del menu restano com'erano,
+   li' lo spazio e' poco e la regola e' un'altra. */
 .fondo__social {
   display: flex;
   justify-content: center;
-  gap: 22px;
+  gap: 28px;
   margin-bottom: 48px;
 }
 
@@ -438,9 +440,9 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  color: var(--grigio-testo);
+  width: 52px;
+  height: 52px;
+  color: var(--grafite);
   transition: color 220ms ease, transform 220ms ease;
 }
 
@@ -450,8 +452,8 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
 }
 
 .fondo__social svg {
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
 }
 
 .fondo__colonne {
@@ -576,6 +578,7 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
 .fondo__pezzo--mano { fill: var(--bordeaux); }
 .fondo__pezzo--grigio { fill: var(--grigio-logo); }
 .fondo__pezzo--arco { fill: #D8D8D8; }
+.fondo__pezzo--manubrio { fill: var(--grafite); }
 
 .fondo__nome-img {
   width: 220px;
@@ -667,17 +670,12 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
   transition-property: border-color, color;
 }
 
-.con-movimento a.presentazione__piccolo {
-  transition-property: box-shadow;
-}
-
 .con-movimento .servizio-card {
   transition-property: none;
 }
 
 .con-movimento .bottone:hover,
 .con-movimento .bottone--vuoto:hover,
-.con-movimento a.presentazione__piccolo:hover,
 .con-movimento .servizio-card:hover {
   transform: none;
 }

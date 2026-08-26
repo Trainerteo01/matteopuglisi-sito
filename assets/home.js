@@ -90,141 +90,17 @@
     mostra(0);
   }
 
-  /* ----- Carosello servizi in home, solo sotto i 900px (7.3) ----- */
-  function initServiziCarousel() {
-    const carosello = document.querySelector('.servizi__track');
-    if (!carosello) return;
+  /* ----- Carosello servizi in home -----
+   * Il 2026-08-26 Matteo ha chiesto di togliere lo scorrimento automatico ai tre
+   * riquadri dei servizi. Qui dentro non c'era altro: niente frecce, niente indicatori,
+   * solo la macchina che faceva scorrere da solo il nastro sotto i 900px e che si fermava
+   * al tocco. Tolto quello, la funzione restava vuota, quindi e' andata via tutta: il
+   * nastro .servizi__track resta un contenitore che scorre di suo, con il dito o con il
+   * trackpad, e si comanda dal CSS.
+   * Nel giro c'era anche un difetto: fermoDa dichiarata e fermaDa usata. Senza
+   * 'use strict' in questo file non dava errore, si creava una variabile globale di
+   * nascosto. Segnalato e sparito con il resto. */
 
-    const schede = Array.from(carosello.querySelectorAll('.servizio-card'));
-    if (schede.length === 0) return;
 
-    const ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const media = matchMedia('(max-width: 900px)');
-    let timer = null;
-    let fermoDa = 0;
-    let larghezzaScheda = 0;
-    let gap = 0;
-
-    function attivo() {
-      return media.matches && !ridotto;
-    }
-
-    function misura() {
-      if (!media.matches) return;
-      const stile = getComputedStyle(carosello);
-      gap = parseFloat(stile.gap) || 16;
-      larghezzaScheda = schede[0].offsetWidth + gap;
-    }
-
-    function indiceDaScroll() {
-      return Math.round(carosello.scrollLeft / larghezzaScheda);
-    }
-
-    function vaiA(i) {
-      if (i < 0) i = 0;
-      if (i >= schede.length) i = schede.length - 1;
-      carosello.scrollTo({ left: i * larghezzaScheda, behavior: 'smooth' });
-    }
-
-    function prossima() {
-      const i = indiceDaScroll();
-      vaiA(i + 1 >= schede.length ? 0 : i + 1);
-    }
-
-    function avvia() {
-      if (timer) clearInterval(timer);
-      timer = setInterval(prossima, 5000);
-    }
-
-    function ferma() {
-      if (timer) {
-        clearInterval(timer);
-        timer = null;
-      }
-    }
-
-    function toccato() {
-      fermaDa = Date.now();
-      ferma();
-    }
-
-    function lascia() {
-      fermaDa = Date.now();
-      setTimeout(function () {
-        if (Date.now() - fermaDa >= 5000 && attivo()) {
-          avvia();
-        }
-      }, 5000);
-    }
-
-    function gestisciMedia() {
-      if (attivo()) {
-        misura();
-        avvia();
-      } else {
-        ferma();
-      }
-    }
-
-    carosello.addEventListener('pointerdown', function () {
-      if (!attivo()) return;
-      toccato();
-    });
-    carosello.addEventListener('pointerup', function () {
-      if (!attivo()) return;
-      lascia();
-    });
-    carosello.addEventListener('pointercancel', function () {
-      if (!attivo()) return;
-      lascia();
-    });
-    carosello.addEventListener('mouseenter', function () {
-      if (!attivo()) return;
-      ferma();
-    });
-    carosello.addEventListener('mouseleave', function () {
-      if (!attivo()) return;
-      lascia();
-    });
-
-    window.addEventListener('resize', function () {
-      misura();
-    }, { passive: true });
-
-    media.addEventListener('change', gestisciMedia);
-
-    new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting && attivo()) {
-        misura();
-        avvia();
-      } else {
-        ferma();
-      }
-    }, { threshold: 0.1 }).observe(carosello);
-
-    gestisciMedia();
-  }
-
-  /* ----- Tendina del percorso (7.2) ----- */
-  function initTendinaPercorso() {
-    const pulsante = document.querySelector('.percorso__apri');
-    const tendina = document.getElementById('percorso');
-    if (!pulsante || !tendina) return;
-
-    pulsante.addEventListener('click', function () {
-      // Commuta lo stato di apertura della tendina
-      const aperta = tendina.classList.toggle('aperta');
-
-      // Aggiorna lo stato per i lettori di schermo
-      pulsante.setAttribute('aria-expanded', aperta ? 'true' : 'false');
-
-      // Cambia la scritta del pulsante
-      pulsante.textContent = aperta ? 'Chiudi' : 'Il mio percorso';
-    });
-  }
-
-  /* ----- Modulo contatti che apre WhatsApp (11) ----- */
   initFotoCarousel();
-  initServiziCarousel();
-  initTendinaPercorso();
 })();

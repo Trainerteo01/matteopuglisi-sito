@@ -113,9 +113,12 @@
   fill: var(--bordeaux);
 }
 
-.pz-vertebra,
-.pz-manubrio {
+.pz-vertebra {
   fill: var(--grigio-logo);
+}
+
+.pz-manubrio {
+  fill: var(--grafite);
 }
 
 .pz-arco {

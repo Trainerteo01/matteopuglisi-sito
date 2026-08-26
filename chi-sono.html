@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Collaborazione con le società di calcio · Matteo Puglisi, Chinesiologo</title>
-  <meta name="description" content="Un preparatore atletico per il vostro settore giovanile. Valutazione sul campo e sedute periodiche, concordate insieme.">
+  <title>Chi sono · Matteo Puglisi · Chinesiologo e Personal Trainer</title>
+  <meta name="description" content="Personal Trainer e Chinesiologo Clinico. Credo nel movimento come chiave per stare bene: la mia storia, quello che faccio oggi e dove voglio arrivare.">
   <meta property="og:title" content="Matteo Puglisi · Chinesiologo">
-  <meta property="og:description" content="Un preparatore atletico per il vostro settore giovanile. Valutazione sul campo e sedute periodiche, concordate insieme.">
+  <meta property="og:description" content="Personal Trainer e Chinesiologo Clinico. Credo nel movimento come chiave per stare bene: la mia storia, quello che faccio oggi e dove voglio arrivare.">
   <meta property="og:image" content="assets/foto/hero-pista-forze.jpg">
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/telaio.css">
   <link rel="stylesheet" href="assets/interne.css">
+  <link rel="stylesheet" href="assets/chi-sono.css">
 </head>
 <body>
 
@@ -160,7 +161,7 @@
   <ul class="menu-pannello__voci">
     <li class="menu-voce">
       <div class="menu-voce__intestazione">
-        <a class="menu-voce__link" href="chi-sono.html">Chi sono</a>
+        <a class="menu-voce__link voce--corrente" href="chi-sono.html">Chi sono</a>
       </div>
     </li>
     <li class="menu-voce">
@@ -200,7 +201,7 @@
     </li>
     <li class="menu-voce">
       <div class="menu-voce__intestazione">
-        <a class="menu-voce__link voce--corrente" href="societa.html">Collaborazione società calcio</a>
+        <a class="menu-voce__link" href="societa.html">Collaborazione società calcio</a>
       </div>
     </li>
     <li class="menu-voce">
@@ -256,124 +257,96 @@
 
 <main>
 
-<!-- 1. Intestazione, su bianco -->
-<section class="fascia fascia--societa-intestazione">
-  <div class="contenuto" data-anima>
-    <p class="occhiello">PER LE SOCIETÀ</p>
-    <h1 class="titolo-grande">UN PREPARATORE ATLETICO PER IL VOSTRO SETTORE GIOVANILE.</h1>
-    <p class="societa-sottotitolo">Valutazione sul campo, poi sedute periodiche concordate con voi.</p>
+<!-- Sfondo: il marchio intero, fermo e centrato dietro al testo, che si accende un
+       gruppo di pezzi alla volta mentre si legge. Deciso con Michele il 2026-08-26:
+       Matteo non voleva il filmato della colonna, voleva il suo marchio come sfondo.
+       Le quattro tappe corrispondono alle quattro parti del testo, cosi' l'animazione
+       segue il senso di quello che si sta leggendo e non lo scorrimento nudo. -->
+  <div class="csi-sfondo" aria-hidden="true">
+    <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="csi-sfondo__marchio" viewBox="9 14 475 499">
+      <g class="csi-sfondo__gruppo" data-tappa="1">
+        <use href="#arco-chiaro" xlink:href="#arco-chiaro" class="csi-pezzo csi-pezzo--arco"/>
+        <use href="#arco-mano" xlink:href="#arco-mano" class="csi-pezzo csi-pezzo--mano"/>
+      </g>
+      <g class="csi-sfondo__gruppo" data-tappa="2">
+        <use href="#mano-dito" xlink:href="#mano-dito" class="csi-pezzo csi-pezzo--mano"/>
+        <use href="#manubrio-1" xlink:href="#manubrio-1" class="csi-pezzo csi-pezzo--manubrio"/>
+        <use href="#manubrio-2" xlink:href="#manubrio-2" class="csi-pezzo csi-pezzo--manubrio"/>
+        <use href="#manubrio-3" xlink:href="#manubrio-3" class="csi-pezzo csi-pezzo--manubrio"/>
+        <use href="#manubrio-4" xlink:href="#manubrio-4" class="csi-pezzo csi-pezzo--manubrio"/>
+      </g>
+      <g class="csi-sfondo__gruppo" data-tappa="3">
+        <use href="#vertebra-1" xlink:href="#vertebra-1" class="csi-pezzo csi-pezzo--vertebra"/>
+        <use href="#vertebra-2" xlink:href="#vertebra-2" class="csi-pezzo csi-pezzo--vertebra"/>
+        <use href="#vertebra-3" xlink:href="#vertebra-3" class="csi-pezzo csi-pezzo--vertebra"/>
+        <use href="#vertebra-4" xlink:href="#vertebra-4" class="csi-pezzo csi-pezzo--vertebra"/>
+      </g>
+      <g class="csi-sfondo__gruppo" data-tappa="4">
+        <use href="#vertebra-5" xlink:href="#vertebra-5" class="csi-pezzo csi-pezzo--vertebra"/>
+        <use href="#vertebra-6" xlink:href="#vertebra-6" class="csi-pezzo csi-pezzo--vertebra"/>
+        <use href="#vertebra-7" xlink:href="#vertebra-7" class="csi-pezzo csi-pezzo--vertebra"/>
+        <use href="#vertebra-8" xlink:href="#vertebra-8" class="csi-pezzo csi-pezzo--vertebra"/>
+      </g>
+    </svg>
   </div>
-</section>
 
-<!-- 2. Prima fascia di foto -->
-<div class="fascia-foto fascia-foto--societa">
-  <img src="assets/foto/societa-campo.jpg" alt="Campo da calcio illuminato" width="1600" height="900">
-  <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="pennellata pennellata--basso"
-       viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-    <use href="#pennellata-a" xlink:href="#pennellata-a"/>
-  </svg>
-</div>
+  <!-- 1. Intestazione -->
+  <section class="fascia csi-intestazione">
+    <div class="contenuto" data-anima>
+      <p class="occhiello">CHI SONO</p>
+      <h1 class="titolo-grande">NON HO SCELTO QUESTO LAVORO. È COME SE LUI AVESSE SCELTO ME.</h1>
+    </div>
+  </section>
 
-<!-- 3. La descrizione, su bianco -->
-<section class="fascia">
-  <div class="contenuto pagina-testo-centro" data-anima>
-    <p class="societa-descrizione">Valutazione sul campo della condizione atletica-motoria per tutte le categorie. Sedute periodiche al vostro campo, mensili o annuali. Contenuto e frequenza si decidono insieme, in base a quello che serve davvero alla squadra.</p>
-    <p class="societa-descrizione">Mi presento alle scuole calcio e alle società come preparatore atletico. Si parte da una valutazione sul campo della condizione atletica e motoria dei ragazzi, o della squadra intera. Poi, se ha senso per voi, si continua con sedute periodiche. Una scuola calcio con sessanta bambini e una prima squadra hanno bisogni diversi, e il programma lo diciamo insieme.</p>
-  </div>
-</section>
+  <!-- 2. Le quattro parti del testo. Ognuna accende un gruppo di pezzi del marchio. -->
+  <section class="fascia csi-testo">
+    <div class="contenuto csi-colonna">
 
-<!-- 4. Come si lavora, tre passaggi su bianco -->
-<section class="fascia">
-  <div class="contenuto" data-anima>
-    <div class="societa-passaggi">
-      <div class="societa-passaggio">
-        <span class="societa-passaggio__numero">01</span>
-        <h2 class="societa-passaggio__titolo">Si viene a vedere</h2>
-        <p class="societa-passaggio__testo">Una giornata al vostro campo, con i test motori e atletici adatti alle categorie che avete. Alla fine avete i numeri dei vostri ragazzi, scritti.</p>
+      <div class="csi-blocco" data-tappa="1" data-anima>
+        <p class="csi-apertura">Mi chiamo <strong>Matteo Puglisi</strong>, sono Personal Trainer e Chinesiologo Clinico, laureato in Scienze Motorie e, successivamente, in Scienze e Tecniche delle Attività Motorie Preventive e Adattate. Ma prima dei titoli, c'è una cosa che mi definisce più di ogni altra: <strong>credo profondamente nel movimento come chiave per stare bene</strong>, nel corpo e nella testa.</p>
+        <p>Sono cresciuto in mezzo allo sport — tra campi di calcio, oratori e palestre — e quella che era una passione da bambino è diventata, passo dopo passo, la mia vita.</p>
       </div>
-      <div class="societa-passaggio">
-        <span class="societa-passaggio__numero">02</span>
-        <h2 class="societa-passaggio__titolo">Si decide insieme</h2>
-        <p class="societa-passaggio__testo">Guardiamo i numeri e decidiamo cosa serve: quante sedute, su cosa, con quali categorie. Senza pacchetti preconfezionati.</p>
+
+      <div class="csi-blocco" data-tappa="2" data-anima>
+        <h2 class="csi-titolo">La mia storia</h2>
+        <p>Ho sempre avuto due anime: quella che ama stare in mezzo alla gente, motivarla, farla sorridere, e quella più riservata, capace di lavorare sodo in silenzio, con impegno e responsabilità. Le ho fatte convivere nello sport. Ho studiato — laurea triennale, poi la magistrale — ma non mi sono mai accontentato dei libri: volevo il campo, le persone, le storie vere. Così, accanto allo studio, ho collezionato certificazioni e soprattutto esperienze: la sala pesi, il settore giovanile, le squadre, i tornei, i bambini che imparano a correre e gli adulti che imparano a volersi di nuovo bene.</p>
+        <p>Ho anche conseguito l'<strong>abilitazione all'insegnamento</strong>, perché credo che il mio contributo non debba fermarsi alla palestra o al campo: voglio portarlo anche <strong>nella scuola, tra i ragazzi</strong>. Il mondo delle scienze motorie viene troppo spesso trascurato, messo in disparte, e invece è proprio lì, tra i banchi, che si costruisce il rapporto con il proprio corpo. Insieme ai tanti colleghi che fanno il mio stesso mestiere, voglio dare il mio contributo per <strong>portare avanti la cultura del movimento</strong>, perché un bambino che impara a muoversi oggi sarà un adulto più sano e più felice domani.</p>
+        <p class="csi-rilievo">Quello che mi porto dietro da ogni incontro è semplice: <strong>ogni persona è diversa, e merita di essere ascoltata prima ancora che allenata.</strong></p>
       </div>
-      <div class="societa-passaggio">
-        <span class="societa-passaggio__numero">03</span>
-        <h2 class="societa-passaggio__titolo">Si lavora sul campo</h2>
-        <p class="societa-passaggio__testo">Le sedute concordate, al vostro campo, con i vostri allenatori. Si rimisura durante l'anno per vedere se la strada è quella giusta.</p>
+
+      <div class="csi-blocco" data-tappa="3" data-anima>
+        <h2 class="csi-titolo">Quello che faccio oggi</h2>
+        <p>Oggi lavoro come <strong>personal trainer presso una struttura dedicata</strong>, e come <strong>preparatore atletico e allenatore UEFA C FIGC</strong> (presto Licenza B) in una <strong>scuola calcio Elite affiliata Fiorentina</strong>. Il mio lavoro si muove su <strong>tre strade</strong>, che in realtà raccontano una sola cosa: aiutare le persone a tirare fuori il meglio di sé.</p>
+        <ul class="csi-strade">
+          <li><a href="allenamento-1-1.html"><strong>Coaching 1:1</strong></a> — seguo chi vuole rimettersi in forma, dimagrire, migliorare la postura o semplicemente tornare a stare bene, online o dal vivo.</li>
+          <li><a href="calcio.html"><strong>Calcio</strong></a> — da allenatore e preparatore atletico accompagno giovani calciatori e squadre, unendo tecnica, atletica e crescita personale.</li>
+          <li><a href="militare.html"><strong>Preparazione militare</strong></a> — preparo chi sogna una carriera nelle Forze Armate e di Polizia a superare le prove fisiche dei concorsi.</li>
+        </ul>
+      </div>
+
+      <div class="csi-blocco" data-tappa="4" data-anima>
+        <h2 class="csi-titolo">Dove voglio arrivare</h2>
+        <p>Ho due sogni che camminano insieme. Il primo è costruire <strong>una struttura tutta mia</strong>: un luogo — fisico e digitale — dove questi mondi possano convivere sotto lo stesso tetto, in cui l'aspirante carabiniere che prepara un concorso, il calciatore che vuole fare il salto di qualità, l'atleta che cerca performance e la persona che vuole semplicemente benessere trovino la stessa attenzione e la stessa passione.</p>
+        <p>Il secondo è <strong>la scuola</strong>: un giorno vorrei insegnare, portare l'educazione motoria tra i ragazzi e dare il mio contributo lì dove spesso viene dimenticata. Perché sono convinto che la cultura del movimento meriti di arrivare ovunque, a partire dai più giovani.</p>
+        <p class="csi-chiusura">Perché alla fine, che si tratti di un campo, di una palestra, di una pista o di un'aula, il mio lavoro è sempre lo stesso: <strong>far muovere le persone verso la versione migliore di sé.</strong></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Chiusura: non il modulo intero come nelle pagine di servizio, che qui sarebbe
+       fuori tono dopo un racconto. Una riga e due strade. -->
+  <section class="fascia fascia--grigia csi-fine">
+    <div class="contenuto pagina-testo-centro" data-anima>
+      <p class="occhiello">PARLIAMONE</p>
+      <h2 class="titolo-sezione">SE TI CI SEI RITROVATO, SCRIVIMI.</h2>
+      <p>La prima chiamata di valutazione è gratuita e dura un quarto d'ora. Mi racconti la tua situazione e ti dico cosa si può fare.</p>
+      <div class="csi-fine__tasti">
+        <a class="bottone" href="index.html#contatti">Parliamone</a>
+        <a class="bottone bottone--vuoto" href="index.html">Torna alla pagina iniziale</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 5. Gli abbonamenti -->
-<section class="fascia">
-  <div class="contenuto pagina-testo-centro" data-anima>
-    <p class="societa-formule__intro">Le formule di collaborazione le sto definendo. Nel frattempo, scrivetemi: ne parliamo e vediamo cosa serve alla vostra società.</p>
-    <!-- IN ATTESA DELLE FORMULE E DEI PREZZI DA MATTEO -->
-    <div class="societa-formule">
-      <div class="societa-formula">
-        <p class="occhiello">FORMULA</p>
-        <h2 class="societa-formula__titolo">Da definire</h2>
-        <p class="societa-formula__riga">Formula in preparazione.</p>
-        <button type="button" class="bottone" disabled>Presto disponibile</button>
-      </div>
-      <div class="societa-formula">
-        <p class="occhiello">FORMULA</p>
-        <h2 class="societa-formula__titolo">Da definire</h2>
-        <p class="societa-formula__riga">Formula in preparazione.</p>
-        <button type="button" class="bottone" disabled>Presto disponibile</button>
-      </div>
-      <div class="societa-formula">
-        <p class="occhiello">FORMULA</p>
-        <h2 class="societa-formula__titolo">Da definire</h2>
-        <p class="societa-formula__riga">Formula in preparazione.</p>
-        <button type="button" class="bottone" disabled>Presto disponibile</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 6. Il curriculum -->
-<section class="fascia">
-  <div class="contenuto pagina-testo-centro" data-anima>
-    <a class="bottone bottone--vuoto" href="chi-sono.html">Guarda il mio curriculum</a>
-  </div>
-</section>
-
-<!-- 7. Il modulo di contatto, su bianco -->
-<section class="fascia">
-  <div class="contenuto pagina-testo-centro" data-anima>
-    <p class="occhiello">PARLIAMONE</p>
-    <h2 class="titolo-sezione">QUINDICI MINUTI PER CAPIRE SE HA SENSO.</h2>
-    <p class="societa-contatti__intro">La prima chiamata di valutazione è gratuita e dura un quarto d'ora. Mi raccontate la vostra situazione, vi dico cosa si può fare e cosa no. Se non è roba mia, ve lo dico.</p>
-  </div>
-  <form class="contatti__form all11-form" id="form-contatti-societa">
-    <div class="all11-form__riga">
-      <div class="all11-form__campo">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
-      <div class="all11-form__campo">
-        <label for="cognome">Cognome</label>
-        <input type="text" id="cognome" name="cognome">
-      </div>
-    </div>
-    <div class="all11-form__campo">
-      <label for="societa">Società</label>
-      <input type="text" id="societa" name="societa">
-    </div>
-    <div class="all11-form__campo">
-      <label for="telefono">Telefono</label>
-      <input type="tel" id="telefono" name="telefono">
-    </div>
-    <div class="all11-form__campo">
-      <label for="messaggio">Messaggio</label>
-      <textarea id="messaggio" name="messaggio" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="bottone">Scrivimi su WhatsApp</button>
-    <p class="all11-form__nota">Si apre WhatsApp con il messaggio già scritto. Lo mandi tu.</p>
-  </form>
-</section>
+  </section>
 
 </main>
 
@@ -473,6 +446,7 @@
 <script src="assets/movimento.js"></script>
 <script src="assets/telaio.js"></script>
 <script src="assets/interne.js"></script>
+<script src="assets/chi-sono.js"></script>
 
 <script src="assets/modulo.js"></script>
 

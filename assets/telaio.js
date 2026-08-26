@@ -348,7 +348,6 @@
   // sito sembra morto in mano.
   if (conMotion) {
     window.Mov.gesti('.bottone, .bottone--vuoto', { sopra: { y: -2 }, premuto: { scale: 0.97 } });
-    window.Mov.gesti('a.presentazione__piccolo', { sopra: { y: -3 }, premuto: { scale: 0.98 } });
     window.Mov.gesti('.servizio-card', { sopra: { y: -4 }, premuto: { scale: 0.99 } });
   }
 })();

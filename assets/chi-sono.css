@@ -1,0 +1,193 @@
+/* Pagina "Chi sono io".
+ *
+ * L'idea, decisa con Michele il 2026-08-26: il marchio di Matteo sta fermo dietro al
+ * testo, centrato, molto sbiadito, e prende presenza mentre si legge. Le quattro tappe
+ * sono le quattro parti del racconto, non pezzi di scorrimento: cosi' il marchio finisce
+ * di comporsi esattamente quando finisce la lettura.
+ * Non e' la replica dell'apertura della home: li' il marchio e' il protagonista e si monta
+ * pezzo per pezzo in quindici tappe, qui e' uno sfondo che accompagna e non deve mai
+ * rubare la riga che si sta leggendo.
+ */
+
+.csi-sfondo {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Dietro a tutto e insensibile al dito: e' decorazione, non un elemento della pagina. */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.csi-sfondo__marchio {
+  width: min(78vh, 620px);
+  height: auto;
+  max-width: 88vw;
+}
+
+/* Lo stato di riposo non e' invisibile: un'ombra del marchio si vede da subito, se no la
+   pagina parte vuota e il primo gruppo che si accende sembra un errore di caricamento. */
+.csi-sfondo__gruppo {
+  opacity: .03;
+  transition: opacity 1100ms cubic-bezier(.16, 1, .3, 1);
+}
+
+/* Provato a .2 il 2026-08-26 e sbagliato: la mano bordeaux diventava una macchia rosa
+   dietro le righe e la lettura ne soffriva. Uno sfondo che si nota e' uno sfondo di
+   troppo. A .085 il marchio si sente e non si legge sopra. */
+.csi-sfondo__gruppo.acceso {
+  opacity: .085;
+}
+
+/* Gli stessi colori del marchio vero, solo tenuti bassi dall'opacita' del gruppo. */
+.csi-pezzo--mano { fill: var(--bordeaux); }
+.csi-pezzo--vertebra { fill: var(--grigio-logo); }
+.csi-pezzo--manubrio { fill: var(--grafite); }
+.csi-pezzo--arco { fill: #D8D8D8; }
+
+/* Il testo sta sopra lo sfondo. Senza questo, il marchio fisso coprirebbe le sezioni. */
+.csi-intestazione,
+.csi-testo,
+.csi-fine {
+  position: relative;
+  z-index: 1;
+}
+
+/* Il selettore e' `main .csi-intestazione` e non `.csi-intestazione` per un motivo
+   preciso: interne.css ha `main .fascia { padding-block: clamp(52px, 6vw, 88px) }`, che
+   con elemento piu' classe pesa piu' di una classe sola e vince comunque, anche se questo
+   foglio viene caricato dopo. Con la classe sola il padding restava 52px, l'occhiello
+   "CHI SONO" finiva sotto la barra fissa da 72px e sul telefono spariva.
+   La barra e' fissa, quindi lo stacco si conta dalla sua altezza, che e' gia' una
+   variabile, non a occhio con i vh. */
+main .csi-intestazione {
+  padding-top: calc(var(--altezza-barra) + clamp(28px, 6vh, 90px));
+  padding-bottom: clamp(20px, 4vh, 48px);
+  text-align: center;
+}
+
+/* La frase e' lunga sessanta caratteri: con la misura piena di .titolo-grande andava a
+   quattro righe e schiacciava tutto quello che veniva dopo. Un filo piu' stretta di
+   misura e un filo piu' larga di colonna: tre righe, stessa forza. */
+.csi-intestazione .titolo-grande {
+  max-width: 26ch;
+  margin-inline: auto;
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+}
+
+/* Una colonna stretta: un racconto lungo si legge se la riga non supera i 70 caratteri. */
+.csi-colonna {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+.csi-blocco {
+  margin-bottom: clamp(48px, 9vh, 96px);
+}
+
+.csi-blocco:last-child {
+  margin-bottom: 0;
+}
+
+.csi-colonna p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  margin-bottom: 18px;
+  color: var(--grigio-testo);
+}
+
+.csi-colonna p:last-child {
+  margin-bottom: 0;
+}
+
+/* Il primo paragrafo entra piu' in grande: da' il tono e stacca dal titolo. */
+.csi-apertura {
+  font-size: 1.18rem !important;
+  line-height: 1.65 !important;
+  color: var(--grafite) !important;
+}
+
+.csi-titolo {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  letter-spacing: -0.01em;
+  color: var(--grafite);
+  margin-bottom: 20px;
+}
+
+/* Le due frasi che Matteo ha messo in fondo a una parte: si staccano con un filetto
+   bordeaux invece che con il grassetto, che nel testo c'e' gia'. */
+.csi-rilievo,
+.csi-chiusura {
+  border-left: 3px solid var(--bordeaux);
+  padding-left: 18px;
+  font-size: 1.12rem !important;
+  color: var(--grafite) !important;
+  margin-top: 26px;
+}
+
+.csi-strade {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+
+.csi-strade li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  line-height: 1.7;
+  color: var(--grigio-testo);
+}
+
+.csi-strade li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 8px;
+  height: 2px;
+  background: var(--bordeaux);
+}
+
+.csi-strade a {
+  color: var(--grafite);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(149, 29, 31, .35);
+  transition: border-color 220ms ease, color 220ms ease;
+}
+
+.csi-strade a:hover {
+  color: var(--bordeaux);
+  border-bottom-color: var(--bordeaux);
+}
+
+.csi-fine__tasti {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+@media (max-width: 700px) {
+  /* Sul telefono il marchio fisso dietro a una colonna stretta diventa rumore: la riga
+     di testo ci passa sopra tutta. Si tiene, ma piu' indietro. */
+  .csi-sfondo__gruppo.acceso {
+    opacity: .06;
+  }
+
+  .csi-sfondo__marchio {
+    width: 82vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Niente accensione progressiva: il marchio e' subito quello finale. */
+  .csi-sfondo__gruppo {
+    transition: none;
+    opacity: .085;
+  }
+}
