@@ -241,11 +241,6 @@ p {
   transition: background-color 220ms ease, transform 220ms ease;
 }
 
-.bottone:hover {
-  background: var(--bordeaux-scuro);
-  transform: translateY(-2px);
-}
-
 .bottone--vuoto {
   display: inline-flex;
   align-items: center;
@@ -264,15 +259,26 @@ p {
   transition: border-color 220ms ease, color 220ms ease, transform 220ms ease;
 }
 
-/* Il background va ridichiarato qui, e non basta quello di .bottone--vuoto.
-   .bottone:hover pesa 0,2,0 e batte .bottone--vuoto che pesa 0,1,0: senza questa
-   riga il bottone vuoto si riempie di bordeaux scuro mentre la scritta diventa
-   bordeaux, cioe' rosso su rosso. Misurato il 2026-09-13 su nove bottoni. */
-.bottone--vuoto:hover {
-  background: transparent;
-  border-color: var(--bordeaux);
-  color: var(--bordeaux);
-  transform: translateY(-2px);
+/* Sui telefoni non esiste il passaggio del mouse: il browser applica :hover al tocco
+   e ce lo lascia finche' non tocchi altrove, cosi' il bottone resta acceso. Con
+   (hover: hover) l'effetto e' riservato a chi ha davvero un mouse. Il ritorno al
+   tocco lo da' gia' Motion, col gesto premuto attaccato in telaio.js. */
+@media (hover: hover) {
+  .bottone:hover {
+    background: var(--bordeaux-scuro);
+    transform: translateY(-2px);
+  }
+
+  /* Il background va ridichiarato qui, e non basta quello di .bottone--vuoto.
+     .bottone:hover pesa 0,2,0 e batte .bottone--vuoto che pesa 0,1,0: senza questa
+     riga il bottone vuoto si riempie di bordeaux scuro mentre la scritta diventa
+     bordeaux, cioe' rosso su rosso. Misurato il 2026-09-13 su nove bottoni. */
+  .bottone--vuoto:hover {
+    background: transparent;
+    border-color: var(--bordeaux);
+    color: var(--bordeaux);
+    transform: translateY(-2px);
+  }
 }
 
 /* Ritmo delle fasce */
