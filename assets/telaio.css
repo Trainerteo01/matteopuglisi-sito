@@ -379,26 +379,37 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
   gap: 12px;
 }
 
-.menu-pannello__lingua button {
+/* Dal 13 settembre il selettore non e' piu' fatto di bottoni ma di link veri: i
+   crawler seguono i link, non i bottoni, e l'hreflang vuole indirizzi che esistono.
+   La lingua corrente e' uno <span>, l'altra un <a>, e sulle pagine che esistono solo
+   in italiano resta uno <span> spento. */
+.menu-pannello__lingua a,
+.menu-pannello__lingua span {
+  display: block;
   border: 0;
   background: transparent;
-  cursor: pointer;
   padding: 0;
   opacity: 0.45;
   transition: opacity 220ms ease;
 }
 
-.menu-pannello__lingua button[aria-pressed="true"] {
+.menu-pannello__lingua a {
+  cursor: pointer;
+}
+
+.menu-pannello__lingua [aria-current="true"] {
   opacity: 1;
   box-shadow: 0 2px 0 0 var(--bordeaux);
 }
 
-.menu-pannello__lingua button:not([disabled]):hover {
+.menu-pannello__lingua a:hover,
+.menu-pannello__lingua a:focus-visible {
   opacity: 1;
 }
 
-.menu-pannello__lingua button:disabled {
+.menu-pannello__lingua [aria-disabled="true"] {
   cursor: not-allowed;
+  opacity: 0.3;
 }
 
 .menu-pannello__lingua svg {

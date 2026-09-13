@@ -10,11 +10,22 @@
 
   const NUMERO = '393453425891';
 
+  // Le parole del messaggio seguono la lingua della pagina. Il messaggio lo legge Matteo,
+  // ma lo manda il visitatore: deve capire cosa sta per spedire. E ricevere un messaggio
+  // in inglese gli dice subito con chi ha a che fare.
+  const INGLESE = document.documentElement.lang === 'en';
+
+  const PAROLE = INGLESE
+    ? { saluto: 'Hi Matteo, this is ', anonimo: 'someone writing from your website',
+        telefono: 'Phone', categoria: 'Category', obiettivo: 'Goal', societa: 'Club' }
+    : { saluto: 'Ciao Matteo, sono ', anonimo: 'una persona che scrive dal sito',
+        telefono: 'Telefono', categoria: 'Categoria', obiettivo: 'Obiettivo', societa: 'Società' };
+
   // Il campo di mezzo, in ordine di preferenza. Il primo che esiste vince.
   const CAMPI_DI_MEZZO = [
-    { nome: 'categoria', etichetta: 'Categoria' },
-    { nome: 'obiettivo', etichetta: 'Obiettivo' },
-    { nome: 'societa',   etichetta: 'Società' }
+    { nome: 'categoria', etichetta: PAROLE.categoria },
+    { nome: 'obiettivo', etichetta: PAROLE.obiettivo },
+    { nome: 'societa',   etichetta: PAROLE.societa }
   ];
 
   function valore(campo) {
@@ -22,7 +33,11 @@
   }
 
   function initModuloContatti() {
-    const form = document.getElementById('form-contatti');
+    // Si cerca per prefisso e non per id esatto: la pagina delle societa' usa
+    // "form-contatti-societa", e con getElementById('form-contatti') il suo modulo
+    // non veniva agganciato da nessuno. Il tasto WhatsApp ricaricava la pagina e il
+    // messaggio si perdeva. Trovato il 2026-09-13.
+    const form = document.querySelector('[id^="form-contatti"]');
     if (!form) return;
 
     const nome = form.querySelector('[name="nome"]');
@@ -40,7 +55,7 @@
       evento.preventDefault();
 
       const chi = (valore(nome) + ' ' + valore(cognome)).trim();
-      const righe = ['Ciao Matteo, sono ' + (chi || 'una persona che scrive dal sito') + '.'];
+      const righe = [PAROLE.saluto + (chi || PAROLE.anonimo) + '.'];
 
       if (mezzo) {
         const v = valore(mezzo.campo);
@@ -49,7 +64,7 @@
         if (v) { righe.push(mezzo.etichetta + ': ' + v + '.'); }
       }
 
-      if (valore(telefono)) { righe.push('Telefono: ' + valore(telefono) + '.'); }
+      if (valore(telefono)) { righe.push(PAROLE.telefono + ': ' + valore(telefono) + '.'); }
       if (valore(messaggio)) { righe.push(valore(messaggio)); }
 
       const testo = righe.join('\n');

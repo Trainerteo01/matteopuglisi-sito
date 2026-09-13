@@ -178,6 +178,11 @@ svg {
   max-width: 100%;
 }
 
+/* Il <picture> non deve creare una scatola in mezzo: senza questo i contenitori
+   flessibili vedrebbero il picture invece dell'immagine e il ripiego cambierebbe
+   il disegno della pagina. */
+picture { display: contents; }
+
 a {
   color: inherit;
 }

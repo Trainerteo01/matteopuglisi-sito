@@ -1,0 +1,7 @@
+# Il sito di Matteo Puglisi, chinesiologo.
+# Tutto aperto: non c'e' niente da nascondere ai motori, e nemmeno agli assistenti,
+# che qui sono i benvenuti.
+User-agent: *
+Allow: /
+
+Sitemap: https://matteopuglisi.it/sitemap.xml

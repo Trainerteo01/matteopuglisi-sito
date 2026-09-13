@@ -4,14 +4,77 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matteo Puglisi · Chinesiologo · Preparazione atletica online</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="description" content="Preparazione atletica online. Concorsi militari, calcio, e chi vuole tornare a muoversi senza paura.">
   <meta property="og:title" content="Matteo Puglisi · Chinesiologo">
   <meta property="og:description" content="Preparazione atletica online. Concorsi militari, calcio, e chi vuole tornare a muoversi senza paura.">
-  <meta property="og:image" content="assets/foto/hero-pista-forze.jpg">
+  <meta property="og:image" content="https://matteopuglisi.it/assets/foto/hero-pista-forze.jpg">
+  <link rel="preload" href="assets/font/archivo-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/font/ibm-plex-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/base.css">
   <link rel="stylesheet" href="assets/telaio.css">
   <link rel="stylesheet" href="assets/apertura.css">
   <link rel="stylesheet" href="assets/home.css">
+  <link rel="canonical" href="https://matteopuglisi.it/index.html">
+  <link rel="alternate" hreflang="it" href="https://matteopuglisi.it/index.html">
+  <link rel="alternate" hreflang="en" href="https://matteopuglisi.it/en/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://matteopuglisi.it/index.html">
+  <meta property="og:url" content="https://matteopuglisi.it/index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://matteopuglisi.it/#matteo",
+      "name": "Matteo Puglisi",
+      "jobTitle": "Chinesiologo",
+      "description": "Chinesiologo, laurea magistrale in Scienze e Tecniche delle Attivita Motorie Preventive e Adattate. Allenamento uno a uno, preparazione atletica per il calcio e preparazione fisica militare, online e di persona.",
+      "url": "https://matteopuglisi.it/",
+      "image": "https://matteopuglisi.it/assets/foto/matteo-personale.jpg",
+      "email": "trainerteo01@gmail.com",
+      "telephone": "+39 345 342 5891",
+      "vatID": "IT06038400872",
+      "sameAs": [
+        "https://www.instagram.com/matteopuglisi_pt",
+        "https://www.tiktok.com/@matteopuglisi_pt",
+        "https://www.facebook.com/share/1Dfbzm2XtL/",
+        "https://www.linkedin.com/in/matteo-puglisi-80511026b"
+      ],
+      "knowsAbout": [
+        "Preparazione atletica",
+        "Attivita fisica adattata",
+        "Preparazione atletica giovanile",
+        "Prove fisiche dei concorsi militari",
+        "Ginnastica posturale",
+        "Test motori"
+      ],
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "degree",
+        "name": "Laurea magistrale in Scienze e Tecniche delle Attivita Motorie Preventive e Adattate"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://matteopuglisi.it/#sito",
+      "url": "https://matteopuglisi.it/",
+      "name": "Matteo Puglisi",
+      "publisher": {
+        "@id": "https://matteopuglisi.it/#matteo"
+      },
+      "inLanguage": [
+        "it",
+        "en"
+      ]
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -235,22 +298,22 @@
       </a>
     </div>
     <div class="menu-pannello__lingua">
-      <button type="button" aria-label="Lingua italiana" aria-pressed="true" lang="it">
-        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 20" aria-hidden="true">
+      <span aria-current="true" aria-label="Italiano" lang="it">
+        <svg viewBox="0 0 28 20" aria-hidden="true">
           <rect x="0" y="0" width="9.33" height="20" fill="#009246"/>
           <rect x="9.33" y="0" width="9.33" height="20" fill="#ffffff"/>
           <rect x="18.66" y="0" width="9.33" height="20" fill="#CE2B37"/>
         </svg>
-      </button>
-      <button type="button" aria-label="Lingua inglese" aria-pressed="false" lang="en" disabled title="Versione inglese in arrivo">
-        <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 20" aria-hidden="true">
+      </span>
+      <a href="en/index.html" aria-label="English" lang="en">
+        <svg viewBox="0 0 28 20" aria-hidden="true">
           <rect width="28" height="20" fill="#012169"/>
           <path d="M0,0 L28,20 M28,0 L0,20" stroke="#FFFFFF" stroke-width="4"/>
           <path d="M0,0 L28,20 M28,0 L0,20" stroke="#C8102E" stroke-width="2.5"/>
           <path d="M14,0 V20 M0,10 H28" stroke="#FFFFFF" stroke-width="6"/>
-          <path d="M14,0 V20 M0,10 H28" stroke="#C8102E" stroke-width="4"/>
+          <path d="M14,0 V20 M0,10 H28" stroke="#C8102E" stroke-width="3.5"/>
         </svg>
-      </button>
+      </a>
     </div>
   </div>
 </nav>
@@ -326,13 +389,22 @@
   <!-- 7.1 Carosello delle foto -->
   <section class="fascia-foto foto-carousel" id="foto-carousel" aria-label="Il campo, la palestra, la pista">
     <div class="foto-carousel__slide attiva">
-      <img src="assets/foto/hero-3-bambini.jpg" alt="Attività con i bambini" width="1920" height="1283" loading="eager">
+      <picture>
+        <source srcset="assets/foto/hero-3-bambini.webp" type="image/webp">
+        <img src="assets/foto/hero-3-bambini.jpg" alt="Attività con i bambini" width="1920" height="1283" loading="eager">
+      </picture>
     </div>
     <div class="foto-carousel__slide">
-      <img src="assets/foto/hero-4-palestra.jpg" alt="Allenamento in palestra" width="1920" height="1280" loading="lazy">
+      <picture>
+        <source srcset="assets/foto/hero-4-palestra.webp" type="image/webp">
+        <img src="assets/foto/hero-4-palestra.jpg" alt="Allenamento in palestra" width="1920" height="1280" loading="lazy">
+      </picture>
     </div>
     <div class="foto-carousel__slide">
-      <img src="assets/foto/hero-pista-forze.jpg" alt="Preparazione fisica militare" width="1920" height="900" loading="lazy">
+      <picture>
+        <source srcset="assets/foto/hero-pista-forze.webp" type="image/webp">
+        <img src="assets/foto/hero-pista-forze.jpg" alt="Preparazione fisica militare" width="1920" height="900" loading="lazy">
+      </picture>
     </div>
 
     <div class="foto-carousel__velo"></div>
@@ -357,7 +429,10 @@
     <div class="contenuto presentazione__griglia">
       <div class="presentazione__foto">
         <div class="presentazione__grande">
-          <img src="assets/foto/matteo-personale.jpg" alt="Matteo Puglisi" width="1200" height="1490" loading="lazy">
+          <picture>
+            <source srcset="assets/foto/matteo-personale.webp" type="image/webp">
+            <img src="assets/foto/matteo-personale.jpg" alt="Matteo Puglisi" width="1200" height="1490" loading="lazy">
+          </picture>
         </div>
       </div>
 
@@ -379,7 +454,10 @@
 
         <article class="servizio-card">
           <div class="servizio-card__foto">
-            <img src="assets/foto/servizio-1-1.jpg" alt="Allenamento personale uno a uno" width="1200" height="800" loading="lazy">
+            <picture>
+              <source srcset="assets/foto/servizio-1-1.webp" type="image/webp">
+              <img src="assets/foto/servizio-1-1.jpg" alt="Allenamento personale uno a uno" width="1200" height="800" loading="lazy">
+            </picture>
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="pennellata pennellata--basso" viewBox="0 0 340 90" preserveAspectRatio="none" aria-hidden="true">
               <use href="#pennellata-b" xlink:href="#pennellata-b"/>
             </svg>
@@ -394,7 +472,10 @@
 
         <article class="servizio-card">
           <div class="servizio-card__foto">
-            <img src="assets/foto/servizio-calcio-tre.jpg" alt="Attività di base, pre-agonistica e agonistica" width="1200" height="562" loading="lazy">
+            <picture>
+              <source srcset="assets/foto/servizio-calcio-tre.webp" type="image/webp">
+              <img src="assets/foto/servizio-calcio-tre.jpg" alt="Attività di base, pre-agonistica e agonistica" width="1200" height="562" loading="lazy">
+            </picture>
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="pennellata pennellata--basso" viewBox="380 0 340 90" preserveAspectRatio="none" aria-hidden="true">
               <use href="#pennellata-c" xlink:href="#pennellata-c"/>
             </svg>
@@ -413,7 +494,10 @@
 
         <article class="servizio-card">
           <div class="servizio-card__foto">
-            <img src="assets/foto/servizio-militare.jpg" alt="Preparazione fisica militare" width="1200" height="562" loading="lazy">
+            <picture>
+              <source srcset="assets/foto/servizio-militare.webp" type="image/webp">
+              <img src="assets/foto/servizio-militare.jpg" alt="Preparazione fisica militare" width="1200" height="562" loading="lazy">
+            </picture>
             <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="pennellata pennellata--basso" viewBox="760 0 340 90" preserveAspectRatio="none" aria-hidden="true">
               <use href="#pennellata-a" xlink:href="#pennellata-a"/>
             </svg>
@@ -438,7 +522,10 @@
   <section class="fascia fascia--grigia societa">
     <div class="contenuto societa__griglia">
       <div class="societa__foto fascia-foto" data-anima>
-        <img src="assets/foto/societa-campo.jpg" alt="Campo da calcio" width="1600" height="900" loading="lazy">
+        <picture>
+          <source srcset="assets/foto/societa-campo.webp" type="image/webp">
+          <img src="assets/foto/societa-campo.jpg" alt="Campo da calcio" width="1600" height="900" loading="lazy">
+        </picture>
       </div>
       <div class="societa__testo" data-anima>
         <span class="occhiello">Per le società</span>
@@ -592,13 +679,13 @@
   </div>
 </footer>
 
-<script src="assets/motion.js"></script>
-<script src="assets/movimento.js"></script>
-<script src="assets/telaio.js"></script>
-<script src="assets/apertura.js"></script>
-<script src="assets/home.js"></script>
+<script src="assets/motion.js" defer></script>
+<script src="assets/movimento.js" defer></script>
+<script src="assets/telaio.js" defer></script>
+<script src="assets/apertura.js" defer></script>
+<script src="assets/home.js" defer></script>
 
-<script src="assets/modulo.js"></script>
+<script src="assets/modulo.js" defer></script>
 
 </body>
 </html>
