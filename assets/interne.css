@@ -352,45 +352,31 @@
   max-width: none;
 }
 
-/* Il posto della copertina e' piccolo di proposito: a piena larghezza era un rettangolo
-   vuoto alto seicento pixel, e un buco di quelle dimensioni sembra un errore di
-   caricamento, non un segnaposto. Cosi' invece si legge come "la copertina arrivera'". */
+/* Dal 13 settembre qui c'e' la copertina vera, estratta dalla prima pagina del PDF.
+   Era 168px col bordo tratteggiato perche' era un segnaposto: una copertina vera
+   merita di vedersi, e la proporzione e' quella dell'A4, non 3/4. */
 .all11-scheda-pdf__copertina {
-  aspect-ratio: 3 / 4;
-  width: 168px;
+  aspect-ratio: 210 / 297;
+  width: 220px;
   margin: 0 auto 1.2rem;
-  background: var(--bianco-freddo);
-  border: 1px dashed var(--bordo);
+  border: 1px solid var(--bordo);
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
+  overflow: hidden;
+  background: var(--bianco);
 }
 
-.all11-scheda-pdf__copertina .all11-scheda-pdf__segnaposto {
-  text-align: center;
-  line-height: 1.5;
-}
-
-.all11-scheda-pdf__segnaposto {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--grigio-testo);
+.all11-scheda-pdf__copertina img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .all11-scheda-pdf .bottone {
   margin-bottom: 0.8rem;
 }
 
-.all11-scheda-pdf .bottone:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.all11-scheda-pdf__attesa {
+.all11-scheda-pdf__dettaglio {
   font-size: 0.8125rem;
   color: var(--grigio-testo);
   margin: 0;
@@ -594,10 +580,6 @@
 .calcio-sezione__testo p {
   max-width: 62ch;
   margin-bottom: 1.5rem;
-}
-
-.calcio-sezione__testo .all11-scheda-pdf {
-  margin-top: 2rem;
 }
 
 @media (max-width: 900px) {
