@@ -264,7 +264,12 @@ p {
   transition: border-color 220ms ease, color 220ms ease, transform 220ms ease;
 }
 
+/* Il background va ridichiarato qui, e non basta quello di .bottone--vuoto.
+   .bottone:hover pesa 0,2,0 e batte .bottone--vuoto che pesa 0,1,0: senza questa
+   riga il bottone vuoto si riempie di bordeaux scuro mentre la scritta diventa
+   bordeaux, cioe' rosso su rosso. Misurato il 2026-09-13 su nove bottoni. */
 .bottone--vuoto:hover {
+  background: transparent;
   border-color: var(--bordeaux);
   color: var(--bordeaux);
   transform: translateY(-2px);
