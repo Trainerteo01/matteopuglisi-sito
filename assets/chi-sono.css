@@ -61,7 +61,7 @@
 .csi-pezzo--mano { fill: var(--bordeaux); fill-opacity: .4; }
 .csi-pezzo--vertebra { fill: var(--grigio-logo); }
 .csi-pezzo--manubrio { fill: var(--grafite); }
-.csi-pezzo--arco { fill: #D8D8D8; }
+.csi-pezzo--arco { fill: var(--grigio-logo); }
 
 /* Il testo sta sopra lo sfondo. Senza questo, il marchio fisso coprirebbe le sezioni. */
 .csi-intestazione,

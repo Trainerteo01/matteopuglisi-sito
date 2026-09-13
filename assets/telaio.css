@@ -45,7 +45,7 @@
 
 .barra__pezzo--mano { fill: var(--bordeaux); }
 .barra__pezzo--grigio { fill: var(--grigio-logo); }
-.barra__pezzo--arco { fill: #D8D8D8; }
+.barra__pezzo--arco { fill: var(--grigio-logo); }
 .barra__pezzo--manubrio { fill: var(--grafite); }
 
 .barra__nome {
@@ -242,7 +242,7 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
 .pannello__pezzo--mano { fill: var(--bordeaux); }
 .pannello__pezzo--vertebra { fill: var(--grigio-logo); }
 .pannello__pezzo--manubrio { fill: var(--grafite); }
-.pannello__pezzo--arco { fill: #D8D8D8; }
+.pannello__pezzo--arco { fill: var(--grigio-logo); }
 
 .menu-pannello__voci {
   list-style: none;
@@ -590,7 +590,7 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
 
 .fondo__pezzo--mano { fill: var(--bordeaux); }
 .fondo__pezzo--grigio { fill: var(--grigio-logo); }
-.fondo__pezzo--arco { fill: #D8D8D8; }
+.fondo__pezzo--arco { fill: var(--grigio-logo); }
 .fondo__pezzo--manubrio { fill: var(--grafite); }
 
 .fondo__nome-img {

@@ -130,7 +130,7 @@
 }
 
 .pz-arco {
-  fill: #D8D8D8;
+  fill: var(--grigio-logo);
 }
 
 /* le battute di testo */
