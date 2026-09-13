@@ -15,5 +15,16 @@ window.CONFIG = {
 
   /* MANCA DA MATTEO: la chiave anon, da prendere in
      supabase.com/dashboard/project/mbzwknehanchdxwipzuk/settings/api-keys */
-  supabaseAnon: ""
+  supabaseAnon: "",
+
+  /* I PDF gratuiti si scaricano lasciando l'email, invece che direttamente?
+     Finche' e' false la pagina resta com'e' adesso, con gli scaricamenti liberi.
+     Si accende SOLO quando sono pronte tutte e tre queste cose, se no la gente
+     lascia l'email e non riceve niente:
+       1. i due PDF spostati nel secchio privato "programmi" di Supabase;
+       2. le variabili su Vercel: SUPABASE_URL, SUPABASE_SERVICE_ROLE,
+          RESEND_API_KEY, MITTENTE, SITO_URL;
+       3. il dominio verificato su Resend, coi record DNS messi a mano su Netsons
+          (l'SPF va ESTESO, non sostituito: sul dominio c'e' gia' la posta Netsons). */
+  richiedeEmail: false
 };

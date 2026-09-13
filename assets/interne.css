@@ -383,6 +383,87 @@
   max-width: none;
 }
 
+/* Il modulo che prende il posto del bottone quando il PDF si chiede per email.
+   Sta dentro la scheda, quindi eredita il testo centrato. */
+.scarica {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  text-align: left;
+}
+
+.scarica__invito {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--grigio-testo);
+  max-width: none;
+  text-align: center;
+}
+
+.scarica__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--grigio-testo);
+}
+
+.scarica__campo input {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 1rem;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--grafite);
+  padding: 12px 14px;
+  border: 1px solid var(--bordo);
+  border-radius: 10px;
+  background: var(--bianco);
+}
+
+.scarica__campo input:focus {
+  outline: 2px solid var(--bordeaux);
+  outline-offset: 2px;
+}
+
+/* La casella del consenso: non e' mai pre-spuntata, e si vede che e' facoltativa. */
+.scarica__consenso {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--grigio-testo);
+}
+
+.scarica__consenso input {
+  margin-top: 3px;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--bordeaux);
+}
+
+.scarica__nota {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--grigio-testo);
+  max-width: none;
+}
+
+.scarica__esito {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--bordeaux);
+  max-width: none;
+  text-align: center;
+}
+
+.scarica__esito:empty { display: none; }
+
 /* Social */
 .all11-social__invito {
   font-size: 1.0625rem;
