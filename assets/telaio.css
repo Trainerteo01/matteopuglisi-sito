@@ -456,6 +456,19 @@ body.menu-aperto .barra__nome-img--nero { opacity: 1; }
   height: 30px;
 }
 
+/* Punto 11 di Matteo: le icone social prendono il colore vero del marchio
+   al passaggio del mouse e al tocco. Da ferme restano grafite, cosi' il
+   fondo pagina non diventa un volantino. L'aggancio e' sull'aria-label,
+   non sull'indirizzo: se un giorno cambia il link, il colore resta. */
+.fondo__social a[aria-label="Instagram"]:hover,
+.menu-pannello__social a[aria-label="Instagram"]:hover { color: #E1306C; }
+.fondo__social a[aria-label="TikTok"]:hover,
+.menu-pannello__social a[aria-label="TikTok"]:hover { color: #FE2C55; }
+.fondo__social a[aria-label="Facebook"]:hover,
+.menu-pannello__social a[aria-label="Facebook"]:hover { color: #1877F2; }
+.fondo__social a[aria-label="LinkedIn"]:hover,
+.menu-pannello__social a[aria-label="LinkedIn"]:hover { color: #0A66C2; }
+
 .fondo__colonne {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

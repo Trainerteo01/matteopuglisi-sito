@@ -790,6 +790,15 @@
   box-shadow: var(--ombra);
   padding: clamp(24px, 4vw, 40px);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* I tre testi sono lunghi diversi, ma le schede sono alte uguali: senza questo
+   i tre pulsanti finiscono a tre altezze diverse e la fila sembra storta. */
+.societa-formula .bottone {
+  margin-top: auto;
+  align-self: center;
 }
 
 .societa-formula__titolo {
@@ -803,14 +812,12 @@
 .societa-formula__riga {
   font-size: 1rem;
   color: var(--grigio-testo);
-  margin: 0 0 1.2rem;
+  margin: 0 0 0.8rem;
   max-width: none;
 }
 
-.societa-formula .bottone:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+.societa-formule__incluso { max-width: 62ch; margin-inline: auto; margin-bottom: clamp(28px, 4vw, 44px); font-size: 0.95rem; color: var(--grigio-testo); }
+.societa-formula__testo { font-size: 1rem; color: var(--grigio-testo); margin: 0 0 1.5rem; max-width: none; }
 
 @media (max-width: 900px) {
   .societa-formule {
