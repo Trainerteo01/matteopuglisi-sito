@@ -14,8 +14,8 @@
   <meta property="og:title" content="Matteo Puglisi · Kinesiologist">
   <meta property="og:description" content="Preparation for the physical tests of the Italian Army, Police and Carabinieri. You turn up already knowing your own times.">
   <meta property="og:image" content="https://matteopuglisi.it/assets/foto/hero-pista-forze.jpg">
-  <link rel="preload" href="../assets/font/archivo-800-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../assets/font/instrument-sans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/font/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/font/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/base.css">
   <link rel="stylesheet" href="../assets/telaio.css">
   <link rel="stylesheet" href="../assets/interne.css">
@@ -449,31 +449,6 @@
   </form>
 </section>
 
-<script>
-(function() {
-  var nav = document.querySelector('.militare-nav');
-  if (!nav) return;
-  var collegamenti = nav.querySelectorAll('a');
-  var sezioni = [];
-  collegamenti.forEach(function(a) {
-    var id = a.getAttribute('href').slice(1);
-    var el = document.getElementById(id);
-    if (el) sezioni.push({ el: el, a: a });
-  });
-  if (!sezioni.length) return;
-  var osservatore = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        collegamenti.forEach(function(a) { a.classList.remove('attivo'); });
-        var trovata = sezioni.find(function(s) { return s.el === entry.target; });
-        if (trovata) trovata.a.classList.add('attivo');
-      }
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-  sezioni.forEach(function(s) { osservatore.observe(s.el); });
-})();
-</script>
-
 </main>
 
 <footer class="fondo">
@@ -572,6 +547,7 @@
 <script src="../assets/movimento.js" defer></script>
 <script src="../assets/telaio.js" defer></script>
 <script src="../assets/interne.js" defer></script>
+<script src="../assets/militare.js" defer></script>
 
 <script src="../assets/modulo.js" defer></script>
 
