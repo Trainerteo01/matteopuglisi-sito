@@ -68,7 +68,7 @@
       if (valore(messaggio)) { righe.push(valore(messaggio)); }
 
       const testo = righe.join('\n');
-      window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(testo), '_blank');
+      window.open('https://wa.me/' + NUMERO + '?text=' + encodeURIComponent(testo), '_blank', 'noopener');
     });
   }
 
