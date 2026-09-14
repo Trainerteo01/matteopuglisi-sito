@@ -21,6 +21,7 @@
     gia: 'I have just sent it. Check your inbox.',
     erroreDati: 'That email does not look right.',
     errore: 'Something went wrong. Try again in a moment, or write to me on WhatsApp.',
+    troppe: 'Too many requests from this connection. Try again in an hour.',
     spento: 'Not available yet. Write to me on WhatsApp and I will send it to you.',
     consenso: 'I would also like to hear about new programmes. (Optional: you get the PDF either way.)',
     nota: 'I use your address to send you this programme. Nothing else, unless you tick the box.'
@@ -31,6 +32,7 @@
     gia: 'Te l\'ho appena mandato. Controlla la posta.',
     erroreDati: 'Quell\'email non mi torna.',
     errore: 'Qualcosa non ha funzionato. Riprova fra poco, oppure scrivimi su WhatsApp.',
+    troppe: 'Troppe richieste da questa connessione. Riprova fra un\'ora.',
     spento: 'Non e\' ancora attivo. Scrivimi su WhatsApp e te lo mando io.',
     consenso: 'Mi fa piacere ricevere notizie sui nuovi programmi. (Facoltativo: il PDF arriva comunque.)',
     nota: 'Uso il tuo indirizzo per mandarti questo programma. Nient\'altro, a meno che tu non spunti la casella.'
@@ -83,7 +85,10 @@
           })
         });
         if (r.status === 503) { esito.textContent = P.spento; return; }
-        if (!r.ok) { esito.textContent = r.status === 400 ? P.erroreDati : P.errore; bottone.disabled = false; return; }
+        if (!r.ok) {
+          esito.textContent = r.status === 400 ? P.erroreDati : r.status === 429 ? P.troppe : P.errore;
+          bottone.disabled = false; return;
+        }
         const d = await r.json();
         esito.textContent = d.esito === 'gia-inviato' ? P.gia : P.fatto;
         form.querySelector('.scarica__invito').hidden = true;
